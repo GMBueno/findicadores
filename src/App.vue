@@ -1,223 +1,230 @@
 <template>
-  <div v-if="isLoading" stroke="blue" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
-    <div>
-      <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
-    </div>
-  </div>
-  <div class="flex flex-col min-h-screen">
-    <div class="grow">
-      <nav class="flex items-center justify-between mb-10 px-10 bg-blue-500 p-3 text-white">
-        <h2 class="text-xl font-bold">Indicadores de Ações</h2>
-        <InputText v-model="ticker" placeholder="Digite o código (ex: BBAS3)" class="mt-0 w-60 p-2 bg-blue-300 border border-blue-600 text-gray-700 placeholder-gray-700" />
-        <Button class="bg-blue-300 hover:bg-blue-600 border-blue-600 text-black" label="Buscar indicadores" @click="fetchData" @keypress.enter="fetchData" />
-      </nav>
+  <div class="bg-slate-200">
+    <div class="flex flex-col min-h-screen">
+      <div class="grow">
+        <nav class="flex items-center py-3 justify-between mb-10 px-10 bg-zinc-600 p-3 text-slate-100">
+          <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
+            <img src="/src/assets/icone-negativo.png" alt="Logo" class="h-8 mr-2"> <!-- Adjust the class as needed -->
+            <h2 class="text-2xl font-semibold">findicadores.com.br</h2>
+          </div>
+          <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
+            <InputText v-model="ticker" placeholder="Digite o código (ex: BBAS3)" @keypress.enter="fetchData" class="mt-0 w-60 px-2 py-1 placeholder:normal-case uppercase bg-slate-200 border border-slate-400 text-zinc-700 placeholder-zinc-500 mr-4" />
+            <Button class="bg-slate-200 hover:bg-slate-300 border-slate-400 text-zinc-700 px-5 text-center py-1" label="Buscar" @click="fetchData" />
+          </div>
+        </nav>
 
-      <!-- Custom Table -->
-      <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border">
-        <div class="align-middle inline-block min-w-full">
-          <!-- Header -->
-          <div class="flex p-2 text-xl bg-blue-400">
-            <div class="flex-1 font-semibold text-black">Indicadores Fundamentalistas {{this.ticker.toUpperCase()}}</div>
-          </div>
-          <!--Subheader Indicadores Valuation -->
-          <div class="flex p-2 bg-blue-300">
-            <div class="flex-1 font-semibold">Valuation</div>
-          </div>
-          <!-- Individual Row 1 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['DividendYield'].indicadorNomeBonito }}
+        <!-- Custom Table -->
+        <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border">
+          <div class="align-middle inline-block min-w-full">
+            <!-- Header -->
+            <div class="flex p-2 text-xl bg-blue-400">
+              <div class="flex-1 font-bold text-black">Indicadores Fundamentalistas {{this.ticker.toUpperCase()}}</div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['DividendYield'].valueString }}
+            <!--Subheader Indicadores Valuation -->
+            <div class="flex p-2 bg-blue-300">
+              <div class="flex-1 font-semibold">Valuation</div>
             </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_VP'].indicadorNomeBonito }}
+            <!-- Individual Row 1 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['DividendYield'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['DividendYield'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_VP'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_VP'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['EV_EBIT'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['EV_EBIT'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_VP'].valueString }}
+            <!-- Individual Row 2 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_EBITDA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_EBITDA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['VPA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['VPA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_Ativos'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_Ativos'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['EV_EBIT'].indicadorNomeBonito }}
+            <!-- Individual Row 3 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_L'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_L'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['EV_EBITDA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['EV_EBITDA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_SR'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_SR'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['EV_EBIT'].valueString }}
+            <!-- Individual Row 4 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_EBIT'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_EBIT'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['LPA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['LPA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['P_CapitalDeGiro'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['P_CapitalDeGiro'].valueString }}
+              </div>
             </div>
-          </div>
-          <!-- Individual Row 2 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_EBITDA'].indicadorNomeBonito }}
+            <!--Subheader Indicadores Endividamento -->
+            <div class="flex p-2 bg-blue-300">
+              <div class="flex-1 font-semibold">Endividamento</div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_EBITDA'].valueString }}
+            <!-- Individual Row 6 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['DividaLiquida_PatrimonioLiquido'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['DividaLiquida_PatrimonioLiquido'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['DividaLiquida_EBITDA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['DividaLiquida_EBITDA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['DividaLiquida_EBIT'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['DividaLiquida_EBIT'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['VPA'].indicadorNomeBonito }}
+            <!-- Individual Row 7 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['PatrimonioLiquido_Ativos'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['PatrimonioLiquido_Ativos'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['Passivos_Ativos'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['Passivos_Ativos'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['LiquidezCorrente'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['LiquidezCorrente'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['VPA'].valueString }}
+            <!--Subheader Indicadores Eficiência -->
+            <div class="flex p-2 bg-blue-300">
+              <div class="flex-1 font-semibold">Eficiência</div>
+              <div class="flex-1 font-semibold">Rentabilidade</div>
             </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_Ativos'].indicadorNomeBonito }}
+            <!-- Individual Row 6 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['MargemBruta'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['MargemBruta'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['MargemEBITDA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['MargemEBITDA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['ROE'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['ROE'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['ROIC'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['ROIC'].valueString }}
+              </div>
             </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_Ativos'].valueString }}
-            </div>
-          </div>
-          <!-- Individual Row 3 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_L'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_L'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['EV_EBITDA'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['EV_EBITDA'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_SR'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_SR'].valueString }}
-            </div>
-          </div>
-          <!-- Individual Row 4 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_EBIT'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_EBIT'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['LPA'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['LPA'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['P_CapitalDeGiro'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['P_CapitalDeGiro'].valueString }}
-            </div>
-          </div>
-          <!--Subheader Indicadores Endividamento -->
-          <div class="flex p-2 bg-blue-300">
-            <div class="flex-1 font-semibold">Endividamento</div>
-          </div>
-          <!-- Individual Row 6 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['DividaLiquida_PatrimonioLiquido'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['DividaLiquida_PatrimonioLiquido'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['DividaLiquida_EBITDA'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['DividaLiquida_EBITDA'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['DividaLiquida_EBIT'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['DividaLiquida_EBIT'].valueString }}
-            </div>
-          </div>
-          <!-- Individual Row 7 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['PatrimonioLiquido_Ativos'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['PatrimonioLiquido_Ativos'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['Passivos_Ativos'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['Passivos_Ativos'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['LiquidezCorrente'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['LiquidezCorrente'].valueString }}
-            </div>
-          </div>
-          <!--Subheader Indicadores Eficiência -->
-          <div class="flex p-2 bg-blue-300">
-            <div class="flex-1 font-semibold">Eficiência</div>
-            <div class="flex-1 font-semibold">Rentabilidade</div>
-          </div>
-          <!-- Individual Row 6 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['MargemBruta'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['MargemBruta'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['MargemEBITDA'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['MargemEBITDA'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['ROE'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['ROE'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['ROIC'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['ROIC'].valueString }}
-            </div>
-          </div>
-          <!-- Individual Row 6 -->
-          <div class="flex">
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['MargemEBIT'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['MargemEBIT'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['MargemLiquida'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['MargemLiquida'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['ROA'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['ROA'].valueString }}
-            </div>
-            <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
-              {{ this.indicators['GiroAtivos'].indicadorNomeBonito }}
-            </div>
-            <div class="flex-1 px-4 py-1 text-left">
-              {{ this.indicators['GiroAtivos'].valueString }}
+            <!-- Individual Row 6 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['MargemEBIT'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['MargemEBIT'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['MargemLiquida'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['MargemLiquida'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['ROA'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['ROA'].valueString }}
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                {{ this.indicators['GiroAtivos'].indicadorNomeBonito }}
+              </div>
+              <div class="flex-1 px-4 py-1 text-left">
+                {{ this.indicators['GiroAtivos'].valueString }}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <footer class="mt-8 p-4 bg-blue-400 text-white text-center">
+        Dados da <a href="https://fintz.com.br" target="_blank" class="underline text-white">API Fintz.com.br</a>
+      </footer>
     </div>
-    <footer class="mt-8 p-4 bg-blue-400 text-white text-center">
-      Dados da <a href="https://fintz.com.br" target="_blank" class="underline text-white">API Fintz.com.br</a>
-    </footer>
+    <div v-if="isLoading" stroke="blue" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+      <div>
+        <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
+      </div>
+    </div>
   </div>
 </template>
 
