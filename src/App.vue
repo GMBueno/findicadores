@@ -30,7 +30,7 @@
                 <span class="cursor-help" v-tooltip="'tooltip'">Preço</span>
               </div>
               <div class="flex justify-between items-center w-2/12 px-4">
-                <span class="cursor-pointer">R$wx,yz</span>
+                <span @click="showChart('Preço')" class="cursor-pointer">{{ this.cotacoes.length > 0 ? 'R$' + this.cotacoes[0].precoFechamento : '' }}</span>
               </div>
               <div class="flex-1 px-4 py-0 bg-blue-100 text-right">
                 <span class="cursor-help" v-tooltip="'tooltip'">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
@@ -293,6 +293,7 @@ export default {
         labels: [],
         datasets: []
       },
+      cotacoes: [],
       chartOptions: {},
       ticker: '',
       isLoading: false,
@@ -333,7 +334,7 @@ export default {
     async fetchData() {
       this.isLoading = true
       await this.fetchStockIndicators()
-      // ToDo: chamar api para última cotação
+      this.fetchStockPriceHistory()
       // ToDo: chamar api para itens contábeis
       this.isLoading = false
     },
@@ -364,6 +365,23 @@ export default {
           this.indicators[indicatorKey].valueString = 'Error'
         })
         this.formatIndicatorValues() // Format even if there's an error to ensure consistent UI
+      }
+    },
+
+    async fetchStockPriceHistory() {
+      const URL_BASE = 'https://api.fintz.com.br'
+      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
+      const PARAMS = new URLSearchParams({ ticker: this.ticker.toUpperCase(), dataInicio: '2010-01-01' })
+
+      const endpoint = `${URL_BASE}/bolsa/b3/avista/cotacoes/historico?${PARAMS.toString()}`
+
+      try {
+        const response = await fetch(endpoint, { headers: HEADERS })
+        const data = await response.json()
+        this.cotacoes = data
+      
+      } catch (error) {
+        console.error("Failed to fetch stock price history", error)
       }
     },
     
@@ -406,7 +424,11 @@ export default {
       if (this.ticker !== '') { 
         this.currentIndicatorKey = indicatorKey;
         this.isChartVisible = true;
-        this.loadChartData(indicatorKey)
+        if (this.currentIndicatorKey == 'Preço') {
+          this.loadChartDataPrice(indicatorKey)
+        } else {
+          this.loadChartData(indicatorKey)
+        }
       }
     },
 
@@ -498,6 +520,50 @@ export default {
       }).catch(error => {
         console.error("Error loading chart data:", error);
       });
+    },
+
+    loadChartDataPrice(indicatorKey) {
+        // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
+        const chartData = {
+          labels: this.cotacoes.map(item => item.data), // Extracting dates
+          datasets: [{
+            label: indicatorKey, // You might want to customize this label
+            data: this.cotacoes.map(item => item.precoFechamentoAjustado), // Extracting values
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
+            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            borderWidth: 1,
+          }]
+        };
+
+        const options = {
+          scales: {
+            x: {
+              type: 'time', // Specify that this is a time series scale
+              time: {
+                unit: 'month', // Display ticks in month intervals
+                displayFormats: {
+                  month: 'yyyy-MM' // Format dates as 'Year-Month'
+                }
+              },
+              ticks: {
+                autoSkip: true, // Enable automatic skipping of ticks to prevent overlap
+                maxTicksLimit: 60 // Maximum number of ticks displayed
+              }
+            },
+            y: {
+              ticks: {
+                callback: function(value) {
+                  const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+                  return(formatter.format(value))
+                }
+              }
+            }
+          }
+        };
+
+      // Assigning formatted chartData for chart rendering
+      this.chartData = chartData;
+      this.chartOptions = options;
     },
 
     async fetchStockIndicatorHistory(indicatorKey) {
