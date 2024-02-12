@@ -32,6 +32,7 @@
               </div>
               <div class="flex-1 px-4 py-1 text-left">
                 {{ this.indicators['DividendYield'].valueString }}
+                <i v-if="ticker !== ''" class="pi pi-chart-line ml-2 cursor-pointer" @click="showChart('DividendYield')"></i>
               </div>
               <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
                 {{ this.indicators['P_VP'].indicadorNomeBonito }}
@@ -74,6 +75,7 @@
               </div>
               <div class="flex-1 px-4 py-1 text-left">
                 {{ this.indicators['P_L'].valueString }}
+                <i class="pi pi-chart-line ml-2 cursor-pointer" @click="showChart('P_L')"></i>
               </div>
               <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
                 {{ this.indicators['EV_EBITDA'].indicadorNomeBonito }}
@@ -226,6 +228,9 @@
         <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
       </div>
     </div>
+    <Dialog v-model:visible="isChartVisible" modal :header="'Histórico ' + currentIndicatorKey" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+      <LineChart :chartData="chartData" :chartOptions="chartOptions" />
+    </Dialog>
   </div>
 </template>
 
@@ -233,6 +238,9 @@
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import ProgressSpinner from 'primevue/progressspinner'
+import Dialog from 'primevue/dialog';
+import Chart from 'primevue/chart';
+import LineChart from '/src/components/LineChart.vue';
 
 export default {
   name: 'App',
@@ -240,9 +248,20 @@ export default {
     InputText,
     Button,
     ProgressSpinner,
+    Dialog,
+    Chart,
+    LineChart
   },
   data() {
     return {
+      currentIndicatorKey: '',
+      isChartVisible: false,
+      visible: true,
+      chartData: {
+        labels: [],
+        datasets: []
+      },
+      chartOptions: {},
       ticker: '',
       isLoading: false,
       indicators: {
@@ -337,6 +356,88 @@ export default {
         this.indicators[indicatorKey].valueString = formattedValue
       })
     },
+
+    showChart(indicatorKey) {
+      this.currentIndicatorKey = indicatorKey;
+      this.isChartVisible = true;
+      this.loadChartData(indicatorKey)
+    },
+
+    loadChartData(indicatorKey) {
+      this.fetchStockIndicatorHistory(indicatorKey).then(historicalData => {
+        if (!historicalData) {
+          console.error("No historical data available");
+          return;
+        }
+
+        // Check if the indicator is 'DividendYield' and multiply by 100 for percentage format
+        const data = historicalData.map(item => {
+          return indicatorKey === "DividendYield" ? item.valor * 100 :
+          indicatorKey === "MargemBruta" ? item.valor * 100 :
+          indicatorKey === "MargemEBITDA" ? item.valor * 100 :
+          indicatorKey === "MargemEBIT" ? item.valor * 100 :
+          indicatorKey === "MargemLiquida" ? item.valor * 100 :
+          indicatorKey === "ROE" ? item.valor * 100 :
+          indicatorKey === "ROA" ? item.valor * 100 :
+          indicatorKey === "ROIC" ? item.valor * 100 : item.valor;
+        });
+
+        // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
+        const chartData = {
+          labels: historicalData.map(item => item.data), // Extracting dates
+          datasets: [{
+            label: indicatorKey, // You might want to customize this label
+            data: data, // Extracting values
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
+            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            borderWidth: 1,
+          }]
+        };
+
+        const options = {
+          scales: {
+            y: {
+              ticks: {
+                // Format y-axis ticks as percentages if 'DividendYield'
+                callback: function(value) {
+                  return indicatorKey === "DividendYield" ? `${value}%` : value;
+                }
+              }
+            }
+          }
+        };
+
+        // Assigning formatted chartData for chart rendering
+        this.chartData = chartData;
+        this.chartOptions = options;
+
+      }).catch(error => {
+        console.error("Error loading chart data:", error);
+      });
+    },
+
+    async fetchStockIndicatorHistory(indicatorKey) {
+      const URL_BASE = 'https://api.fintz.com.br'
+      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
+      const PARAMS = new URLSearchParams({ indicador: indicatorKey, ticker: this.ticker.toUpperCase() })
+
+      const endpoint = `${URL_BASE}/bolsa/b3/avista/indicadores/historico?${PARAMS.toString()}`
+
+      try {
+        const response = await fetch(endpoint, { headers: HEADERS })
+        const data = await response.json()
+        
+        return data
+      } catch (error) {
+        console.error("Failed to fetch stock indicator history:", error)
+      }
+    },
+  },
+
+  computed: {
+    isChartDataReady() {
+      return true; // Or any other appropriate check
+    }
   },
 }
 </script>

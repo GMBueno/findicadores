@@ -1,15 +1,24 @@
 import { createApp } from 'vue';
-import './style.css'
+import './style.css';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
-import 'primevue/resources/themes/saga-blue/theme.css'; //theme
-import 'primevue/resources/primevue.min.css'; //core css
-import 'primeicons/primeicons.css'; //icons
+import 'primevue/resources/themes/saga-blue/theme.css'; // Theme
+import 'primevue/resources/primevue.min.css'; // Core CSS
+import 'primeicons/primeicons.css'; // Icons
 import Tooltip from 'primevue/tooltip';
+import Chart from 'primevue/chart';
+import Dialog from 'primevue/dialog'; // Import Dialog
 
 const app = createApp(App);
 
 app.use(PrimeVue);
-app.mount('#app');
 
+// Register components globally
+app.component('Chart', Chart);
+app.component('Dialog', Dialog); // Register Dialog globally
+
+// Register directives globally
 app.directive('tooltip', Tooltip);
+
+// Mount the Vue app
+app.mount('#app');
