@@ -28,6 +28,7 @@
             <div class="flex">
               <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
                 {{ this.indicators['DividendYield'].indicadorNomeBonito }}
+                <i class="pi pi-question-circle ml-2 text-slate-500" v-tooltip="'Proventos últimos 12m / Preço'"></i>
               </div>
               <div class="flex-1 px-4 py-1 text-left">
                 {{ this.indicators['DividendYield'].valueString }}
