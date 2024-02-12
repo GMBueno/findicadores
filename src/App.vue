@@ -2,16 +2,51 @@
   <div class="bg-slate-200">
     <div class="flex flex-col min-h-screen">
       <div class="grow">
-        <nav class="flex items-center py-3 justify-between mb-10 px-10 bg-zinc-600 p-3 text-slate-100">
+        <nav class="flex items-center py-3 justify-between mb-10 px-10 bg-white text-slate-600">
           <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
-            <img src="/src/assets/icone-negativo.png" alt="Logo" class="h-8 mr-2"> <!-- Adjust the class as needed -->
+            <img src="/src/assets/icone-positivo.png" alt="Logo" class="h-8 mr-2"> <!-- Adjust the class as needed -->
             <h2 class="text-2xl font-semibold">findicadores.com.br</h2>
           </div>
+          <!-- <div class="flex items-center">
+            <img src="/src/assets/icone-negativo.png" alt="Logo" class="h-8 mr-2">
+            <h2 class="text-2xl font-semibold">findicadores.com.br</h2>
+          </div> -->
           <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
             <InputText v-model="ticker" placeholder="Digite o código (ex: BBAS3)" @keypress.enter="fetchData" class="mt-0 w-60 px-2 py-1 placeholder:normal-case uppercase bg-slate-200 border border-slate-400 text-zinc-700 placeholder-zinc-500 mr-4" />
-            <Button class="bg-slate-200 hover:bg-slate-300 border-slate-400 text-zinc-700 px-5 text-center py-1" label="Buscar" @click="fetchData" />
+            <Button class="bg-slate-200 hover:bg-slate-300 border border-slate-400 text-zinc-700 px-5 text-center py-1" label="Buscar" @click="fetchData" />
           </div>
         </nav>
+
+        <!-- Custom Table -->
+        <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-12">
+          <div class="align-middle inline-block min-w-full">
+            <!-- Header -->
+            <div class="flex p-2 text-xl bg-blue-400">
+              <div class="flex-1 font-bold text-black">Informações {{this.ticker.toUpperCase()}}</div>
+            </div>
+            <!-- Individual Row 1 -->
+            <div class="flex">
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                <span class="cursor-help" v-tooltip="'tooltip'">Preço</span>
+              </div>
+              <div class="flex justify-between items-center w-2/12 px-4">
+                <span class="cursor-pointer">R$wx,yz</span>
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                <span class="cursor-help" v-tooltip="'tooltip'">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
+              </div>
+              <div class="flex justify-between items-center w-2/12 px-4">
+                <span @click="showChart('ValorDeMercado')" class="cursor-pointer">{{ this.indicators['ValorDeMercado'].valueString }}</span>
+              </div>
+              <div class="flex-1 px-4 py-1 bg-blue-100 text-right">
+                <span class="cursor-help" v-tooltip="'tooltip'">{{ this.indicators['EV'].indicadorNomeBonito }}</span>
+              </div>
+              <div class="flex justify-between items-center w-2/12 px-4">
+                <span @click="showChart('EV')" class="cursor-pointer">{{ this.indicators['EV'].valueString }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Custom Table -->
         <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border">
@@ -225,7 +260,7 @@
         <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
       </div>
     </div>
-    <Dialog v-model:visible="isChartVisible" modal :header="ticker.toUpperCase() + ' ' + this.indicators[currentIndicatorKey].indicadorNomeBonito" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+    <Dialog v-model:visible="isChartVisible" modal :header="ticker.toUpperCase() + ' ' + currentIndicatorKey" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
       <LineChart :chartData="chartData" :chartOptions="chartOptions" />
     </Dialog>
   </div>
@@ -262,6 +297,8 @@ export default {
       ticker: '',
       isLoading: false,
       indicators: {
+        'ValorDeMercado': { indicadorNomeBonito: 'Market Cap', value: '' },
+        'EV': { indicadorNomeBonito: 'EV', value: '' },
         'DividendYield': { indicadorNomeBonito: 'DY', value: '' },
         'P_L': { indicadorNomeBonito: 'P/L', value: '' },
         'P_VP': { indicadorNomeBonito: 'P/VP', value: '' },
@@ -334,7 +371,6 @@ export default {
       Object.keys(this.indicators).forEach(indicatorKey => {
         let formattedValue = this.indicators[indicatorKey].value
         if (!isNaN(formattedValue) && formattedValue !== '-' && formattedValue !== 'Error') {
-          formattedValue = Number(formattedValue).toFixed(2)
           const percentIndicators = {
             DividendYield: true,
             MargemBruta: true,
@@ -345,9 +381,21 @@ export default {
             ROIC: true,
             ROA: true
           }
+          const currencyIndicators = {
+            EV: true,
+            ValorDeMercado: true
+          }
+          if (!(indicatorKey in percentIndicators) && !(indicatorKey in currencyIndicators)) {
+            const formatter = Intl.NumberFormat('pt-br', {  maximumFractionDigits: 2, minimumFractionDigits: 2 })
+            formattedValue = formatter.format(formattedValue)
+          }
           if (indicatorKey in percentIndicators) {
-            formattedValue = (Number(this.indicators[indicatorKey].value) * 100).toFixed(2)
-            formattedValue += '%'
+            const formatter = Intl.NumberFormat('pt-br', { style: 'percent', maximumFractionDigits: 1, minimumFractionDigits: 1 })
+            formattedValue = formatter.format(formattedValue)
+          }
+          if (indicatorKey in currencyIndicators) {
+            const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+            formattedValue = formatter.format(formattedValue)
           }
         }
         this.indicators[indicatorKey].valueString = formattedValue
@@ -404,6 +452,11 @@ export default {
           ROA: true
         };
 
+        const currencyIndicators = {
+          EV: true,
+          ValorDeMercado: true
+        }
+
         const options = {
           scales: {
             x: {
@@ -426,6 +479,9 @@ export default {
                   // Check if the indicatorKey requires percentage formatting
                   if (percentIndicators[indicatorKey]) {
                     return `${value}%`; // Format as percentage
+                  } else if (currencyIndicators) {
+                    const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+                    return(formatter.format(value))
                   } else {
                     return value.toFixed(2); // Format as a decimal with two places
                   }
