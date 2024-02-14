@@ -260,7 +260,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black">Balanço {{this.ticker.toUpperCase()}}</div>
+                <div class="flex-1 font-bold text-black">Balanço (R$) {{this.ticker.toUpperCase()}}</div>
               </div>
               <!-- Individual Row 1 -->
               <div class="flex">
@@ -665,20 +665,12 @@ export default {
         if (!isNaN(formattedValue) && formattedValue !== '-' && formattedValue !== 'Error') {
           // const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
           // formattedValue = formatter.format(formattedValue)
-          const formatter = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            minimumFractionDigits: 2,
+          const formatter = new Intl.NumberFormat('en', {
+            // minimumFractionDigits: 2,
             notation: 'compact'
           });
 
           formattedValue = formatter.format(value);
-
-          // Check if the value is negative and adjust the formatting
-          if (value < 0) {
-            formattedValue = formattedValue.replace('-', ''); // Remove the original minus sign
-            formattedValue = `R$ -${formattedValue.substring(3)}`; // Add the minus sign after the currency symbol
-          }
         }
         this.itens[itemKey].valueString = formattedValue
       })
