@@ -268,19 +268,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['ReceitaLiquida'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex justify-between items-center w-2/12 px-4">
-                  <span @click="showChart('ReceitaLiquida')" class="cursor-pointer">{{ this.itens['ReceitaLiquida'].valueString }}</span>
+                  <span @click="showChartItem('ReceitaLiquida')" class="cursor-pointer">{{ this.itens['ReceitaLiquida'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'Proventos últimos 12m / Preço'">{{ this.itens['Custos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex justify-between items-center w-2/12 px-4">
-                  <span @click="showChart('Custos')" class="cursor-pointer">{{ this.itens['Custos'].valueString }}</span>
+                  <span @click="showChartItem('Custos')" class="cursor-pointer">{{ this.itens['Custos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['ResultadoBruto'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ResultadoBruto')" class="cursor-pointer">{{ this.itens['ResultadoBruto'].valueString }}</span>
+                  <span @click="showChartItem('ResultadoBruto')" class="cursor-pointer">{{ this.itens['ResultadoBruto'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 2 -->
@@ -289,19 +289,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
+                  <span @click="showChartItem('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['EBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('EBIT')" class="cursor-pointer">{{ this.itens['EBIT'].valueString }}</span>
+                  <span @click="showChartItem('EBIT')" class="cursor-pointer">{{ this.itens['EBIT'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['EBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('EBITDA')" class="cursor-pointer">{{ this.itens['EBITDA'].valueString }}</span>
+                  <span @click="showChartItem('EBITDA')" class="cursor-pointer">{{ this.itens['EBITDA'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 3 -->
@@ -310,19 +310,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['ResultadoFinanceiro'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ResultadoFinanceiro')" class="cursor-pointer">{{ this.itens['ResultadoFinanceiro'].valueString }}</span>
+                  <span @click="showChartItem('ResultadoFinanceiro')" class="cursor-pointer">{{ this.itens['ResultadoFinanceiro'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['LAIR'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('LAIR')" class="cursor-pointer">{{ this.itens['LAIR'].valueString }}</span>
+                  <span @click="showChartItem('LAIR')" class="cursor-pointer">{{ this.itens['LAIR'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['Impostos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('Impostos')" class="cursor-pointer">{{ this.itens['Impostos'].valueString }}</span>
+                  <span @click="showChartItem('Impostos')" class="cursor-pointer">{{ this.itens['Impostos'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 4 -->
@@ -331,19 +331,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['LucroLiquidoSociosControladora'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('LucroLiquidoSociosControladora')" class="cursor-pointer">{{ this.itens['LucroLiquidoSociosControladora'].valueString }}</span>
+                  <span @click="showChartItem('LucroLiquidoSociosControladora')" class="cursor-pointer">{{ this.itens['LucroLiquidoSociosControladora'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['PatrimonioLiquido'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('PatrimonioLiquido')" class="cursor-pointer">{{ this.itens['PatrimonioLiquido'].valueString }}</span>
+                  <span @click="showChartItem('PatrimonioLiquido')" class="cursor-pointer">{{ this.itens['PatrimonioLiquido'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['AtivoTotal'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('AtivoTotal')" class="cursor-pointer">{{ this.itens['AtivoTotal'].valueString }}</span>
+                  <span @click="showChartItem('AtivoTotal')" class="cursor-pointer">{{ this.itens['AtivoTotal'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 5 -->
@@ -352,19 +352,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['PassivoTotal'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('PassivoTotal')" class="cursor-pointer">{{ this.itens['PassivoTotal'].valueString }}</span>
+                  <span @click="showChartItem('PassivoTotal')" class="cursor-pointer">{{ this.itens['PassivoTotal'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['DividaBruta'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividaBruta')" class="cursor-pointer">{{ this.itens['DividaBruta'].valueString }}</span>
+                  <span @click="showChartItem('DividaBruta')" class="cursor-pointer">{{ this.itens['DividaBruta'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['DividaLiquida'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividaLiquida')" class="cursor-pointer">{{ this.itens['DividaLiquida'].valueString }}</span>
+                  <span @click="showChartItem('DividaLiquida')" class="cursor-pointer">{{ this.itens['DividaLiquida'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 6 -->
@@ -373,19 +373,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['CaixaEquivalentes'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('CaixaEquivalentes')" class="cursor-pointer">{{ this.itens['CaixaEquivalentes'].valueString }}</span>
+                  <span @click="showChartItem('CaixaEquivalentes')" class="cursor-pointer">{{ this.itens['CaixaEquivalentes'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['Disponibilidades'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('Disponibilidades')" class="cursor-pointer">{{ this.itens['Disponibilidades'].valueString }}</span>
+                  <span @click="showChartItem('Disponibilidades')" class="cursor-pointer">{{ this.itens['Disponibilidades'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['PassivoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('PassivoCirculante')" class="cursor-pointer">{{ this.itens['PassivoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('PassivoCirculante')" class="cursor-pointer">{{ this.itens['PassivoCirculante'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 7 -->
@@ -394,19 +394,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['PassivoNaoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('PassivoNaoCirculante')" class="cursor-pointer">{{ this.itens['PassivoNaoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('PassivoNaoCirculante')" class="cursor-pointer">{{ this.itens['PassivoNaoCirculante'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['ReceitasFinanceiras'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ReceitasFinanceiras')" class="cursor-pointer">{{ this.itens['ReceitasFinanceiras'].valueString }}</span>
+                  <span @click="showChartItem('ReceitasFinanceiras')" class="cursor-pointer">{{ this.itens['ReceitasFinanceiras'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['DespesasFinanceiras'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DespesasFinanceiras')" class="cursor-pointer">{{ this.itens['DespesasFinanceiras'].valueString }}</span>
+                  <span @click="showChartItem('DespesasFinanceiras')" class="cursor-pointer">{{ this.itens['DespesasFinanceiras'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 8 -->
@@ -415,19 +415,19 @@
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['AtivoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('AtivoCirculante')" class="cursor-pointer">{{ this.itens['AtivoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('AtivoCirculante')" class="cursor-pointer">{{ this.itens['AtivoCirculante'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['AtivoNaoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('AtivoNaoCirculante')" class="cursor-pointer">{{ this.itens['AtivoNaoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('AtivoNaoCirculante')" class="cursor-pointer">{{ this.itens['AtivoNaoCirculante'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="'tooltip'">{{ this.itens['EquivalenciaPatrimonial'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('EquivalenciaPatrimonial')" class="cursor-pointer">{{ this.itens['EquivalenciaPatrimonial'].valueString }}</span>
+                  <span @click="showChartItem('EquivalenciaPatrimonial')" class="cursor-pointer">{{ this.itens['EquivalenciaPatrimonial'].valueString }}</span>
                 </div>
               </div>
             </div>
@@ -527,7 +527,7 @@ export default {
         'PassivoTotal': { indicadorNomeBonito: 'Passivo', value: '' },
         'DividaBruta': { indicadorNomeBonito: 'Dív. Bruta', value: '' },
         'DividaLiquida': { indicadorNomeBonito: 'Dív. Líquida', value: '' },
-        'CaixaEquivalentes': { indicadorNomeBonito: 'CaixaEquivalentes', value: '' },
+        'CaixaEquivalentes': { indicadorNomeBonito: 'Caixa e Equiv.', value: '' },
         'Disponibilidades': { indicadorNomeBonito: 'Dispon.', value: '' },
         'PassivoCirculante': { indicadorNomeBonito: 'Passivo Circ.', value: '' },
         'PassivoNaoCirculante': { indicadorNomeBonito: 'Passivo N. Circ.', value: '' },
@@ -666,7 +666,8 @@ export default {
           // const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
           // formattedValue = formatter.format(formattedValue)
           const formatter = new Intl.NumberFormat('en', {
-            // minimumFractionDigits: 2,
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
             notation: 'compact'
           });
 
@@ -678,6 +679,8 @@ export default {
 
     showChart(indicatorKey) {
       if (this.ticker !== '') { 
+        this.chartData = {}; // resetting
+        this.chartOptions = {}; // resetting
         this.currentIndicatorKey = indicatorKey;
         this.isChartVisible = true;
         if (this.currentIndicatorKey == 'Preço') {
@@ -686,6 +689,81 @@ export default {
           this.loadChartData(indicatorKey)
         }
       }
+    },
+
+    showChartItem(indicatorKey) {
+      if (this.ticker !== '') { 
+        this.chartData = {}; // resetting
+        this.chartOptions = {}; // resetting
+        this.currentIndicatorKey = indicatorKey;
+        this.isChartVisible = true;
+        this.loadChartDataItem(indicatorKey)
+      }
+    },
+
+    loadChartDataItem(indicatorKey) {
+      this.fetchStockItemHistory(indicatorKey).then(historicalData => {
+        if (!historicalData) {
+          console.error("No historical data available");
+          return;
+        }
+
+        const data = historicalData.map(item => item.valor)
+
+        // Function to map 'ano' and 'trimestre' to a date string
+        const mapToQuarterEndMonth = (year, quarter) => {
+          const month = quarter === 1 ? '03' : quarter === 2 ? '06' : quarter === 3 ? '09' : '12';
+          return `${year}-${month}`;
+        };
+        
+        // Generating labels using 'ano' and 'trimestre'
+        const labels = historicalData.map(item => mapToQuarterEndMonth(item.ano, item.trimestre));
+
+        // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
+        const chartData = {
+          labels: labels, // Extracting dates
+          datasets: [{
+            label: indicatorKey, // You might want to customize this label
+            data: data, // Extracting values
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
+            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            borderWidth: 1,
+          }]
+        };
+
+        const options = {
+          scales: {
+            x: {
+              type: 'time', // Specify that this is a time series scale
+              time: {
+                unit: 'month', // Display ticks in month intervals
+                displayFormats: {
+                  month: 'yyyy-MM' // Format dates as 'Year-Month'
+                }
+              },
+              ticks: {
+                autoSkip: true, // Enable automatic skipping of ticks to prevent overlap
+                maxTicksLimit: 60 // Maximum number of ticks displayed
+              }
+            },
+            y: {
+              ticks: {
+                callback: function(value) {
+                  const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+                  return(formatter.format(value))
+                }
+              }
+            }
+          }
+        };
+
+        // Assigning formatted chartData for chart rendering
+        this.chartData = chartData;
+        this.chartOptions = options;
+
+      }).catch(error => {
+        console.error("Error loading chart ITEM data:", error);
+      });
     },
 
     loadChartData(indicatorKey) {
@@ -774,7 +852,7 @@ export default {
         this.chartOptions = options;
 
       }).catch(error => {
-        console.error("Error loading chart data:", error);
+        console.error("Error loading chart INDICATOR data:", error);
       });
     },
 
@@ -822,6 +900,30 @@ export default {
       this.chartOptions = options;
     },
 
+    async fetchStockItemHistory(indicatorKey) {
+      const URL_BASE = 'https://api.fintz.com.br'
+      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
+      const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
+
+      let tipoPeriodo = '12M'
+      if (not_12m.includes(indicatorKey)) {
+        tipoPeriodo = 'TRIMESTRAL'
+      }
+
+      const PARAMS = new URLSearchParams({ item: indicatorKey, ticker: this.ticker.toUpperCase(), tipoPeriodo: tipoPeriodo })
+
+      const endpoint = `${URL_BASE}/bolsa/b3/avista/itens-contabeis/historico?${PARAMS.toString()}`
+
+      try {
+        const response = await fetch(endpoint, { headers: HEADERS })
+        const data = await response.json()
+        
+        return data
+      } catch (error) {
+        console.error("Failed to fetch stock ITEM history:", error)
+      }
+    },
+
     async fetchStockIndicatorHistory(indicatorKey) {
       const URL_BASE = 'https://api.fintz.com.br'
       const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
@@ -835,7 +937,7 @@ export default {
         
         return data
       } catch (error) {
-        console.error("Failed to fetch stock indicator history:", error)
+        console.error("Failed to fetch stock INDICATOR history:", error)
       }
     },
   },
