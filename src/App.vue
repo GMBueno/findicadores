@@ -723,10 +723,14 @@ export default {
           labels: labels, // Extracting dates
           datasets: [{
             label: this.itens[indicatorKey].indicadorNomeBonito, // You might want to customize this label
-            data: data, // Extracting values
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
-            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            data: data,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color of the dataset (area under the line)
+            fill: true,
+            borderColor: 'rgba(54, 162, 235, 1)', // Border color of the line
             borderWidth: 1,
+            pointRadius: 3, // Smaller point radius for smaller dots
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
+            pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
         };
 
@@ -790,9 +794,13 @@ export default {
           datasets: [{
             label: indicatorKey, // You might want to customize this label
             data: data, // Extracting values
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
-            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color of the dataset (area under the line)
+            fill: true,
+            borderColor: 'rgba(54, 162, 235, 1)', // Border color of the line
             borderWidth: 1,
+            pointRadius: 2, // Smaller point radius for smaller dots
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
+            pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
         };
 
@@ -856,15 +864,49 @@ export default {
     },
 
     loadChartDataPrice(indicatorKey) {
+      // Assuming this.cotacoes contains your dataset and you want to extract precoFechamentoAjustado
+      const totalPoints = this.cotacoes.length;
+      const maxPoints = 200;
+
+      // Calculate the interval for sampling. Use Math.ceil to ensure you're rounding up to avoid skipping too many points.
+      const interval = Math.ceil(totalPoints / maxPoints);
+
+      // Initialize an array to hold the sampled data points
+      let sampledData = [];
+      let sampledDate = []
+
+      // Ensure the most recent data point is always included
+      sampledData.push(this.cotacoes[0].precoFechamentoAjustado);
+      sampledDate.push(this.cotacoes[0].data);
+
+      // Iterate over the dataset in reverse, starting from the end, to pick data points at the calculated interval
+      for (let i = totalPoints - 1; i > 0; i -= interval) {
+          // Add the data point from the calculated position to the sampledData array
+          // Use totalPoints - i - 1 to access data in reverse order
+          const index = totalPoints - i - 1;
+          if (index !== 0) { // Avoid adding the most recent data point again
+              sampledData.push(this.cotacoes[index].precoFechamentoAjustado);
+              sampledDate.push(this.cotacoes[index].data);
+          }
+      }
+
+        // Since we iterated in reverse, reverse the array to start with the most recent data point
+        sampledData = sampledData.reverse();
+        sampledDate = sampledDate.reverse();
+
         // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
         const chartData = {
-          labels: this.cotacoes.map(item => item.data), // Extracting dates
+          labels: sampledDate, // Extracting dates
           datasets: [{
             label: indicatorKey, // You might want to customize this label
-            data: this.cotacoes.map(item => item.precoFechamentoAjustado), // Extracting values
-            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
-            borderColor: 'rgba(54, 162, 235, 1)', // Example border color
+            data: sampledData, // Extracting values
+            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color of the dataset (area under the line)
+            fill: true,
+            borderColor: 'rgba(54, 162, 235, 1)', // Border color of the line
             borderWidth: 1,
+            pointRadius: 2, // Smaller point radius for smaller dots
+            pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
+            pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
         };
 
