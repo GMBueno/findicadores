@@ -2,7 +2,7 @@
   <div class="bg-slate-200">
     <div class="flex flex-col min-h-screen">
       <div class="grow">
-        <nav class="flex items-center py-3 justify-between mb-10 px-10 bg-white text-slate-600">
+        <nav class="flex items-center py-3 justify-between mb-12 px-10 bg-white text-slate-600">
           <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
             <img src="/src/assets/icone-positivo.png" alt="Logo" class="h-8 mr-2"> <!-- Adjust the class as needed -->
             <h2 class="text-2xl font-semibold">findicadores.com.br</h2>
@@ -19,7 +19,7 @@
 
         <!-- Tabela Informações / Infos Gerais -->
         <div class="mx-auto max-w-screen-lg">
-          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-8">
+          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-10">
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
@@ -52,7 +52,7 @@
 
         <!-- Tabela de Indicadores -->
         <div class="mx-auto max-w-screen-lg">
-          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-8">
+          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-10">
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
