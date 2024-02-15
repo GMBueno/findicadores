@@ -640,7 +640,7 @@ export default {
             formattedValue = formatter.format(formattedValue)
           }
           if (indicatorKey in currencyIndicators) {
-            const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+            const formatter = Intl.NumberFormat('en-US', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 1, maximumFractionDigits: 1 })
             formattedValue = formatter.format(formattedValue)
           }
         }
