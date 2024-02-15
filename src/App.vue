@@ -426,7 +426,7 @@
         <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
       </div>
     </div>
-    <Dialog v-model:visible="isChartVisible" modal :header="ticker.toUpperCase() + ' ' + currentIndicatorKey" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
+    <Dialog v-model:visible="isChartVisible" modal :header="chartTitle" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
       <LineChart :chartData="chartData" :chartOptions="chartOptions" />
     </Dialog>
   </div>
@@ -459,8 +459,9 @@ export default {
         labels: [],
         datasets: []
       },
-      cotacoes: [],
       chartOptions: {},
+      chartTitle: '',
+      cotacoes: [],
       ticker: '',
       isLoading: false,
       indicators: {
@@ -667,8 +668,10 @@ export default {
         this.currentIndicatorKey = indicatorKey;
         this.isChartVisible = true;
         if (this.currentIndicatorKey == 'Preço') {
+          this.chartTitle = this.ticker.toUpperCase() + ' Cotação'
           this.loadChartDataPrice(indicatorKey)
         } else {
+          this.chartTitle = this.ticker.toUpperCase() + ' ' + this.indicators[indicatorKey].indicadorNomeBonito
           this.loadChartData(indicatorKey)
         }
       }
@@ -680,6 +683,13 @@ export default {
         this.chartOptions = {}; // resetting
         this.currentIndicatorKey = indicatorKey;
         this.isChartVisible = true;
+        this.chartTitle = this.ticker.toUpperCase() + ' ' + this.itens[indicatorKey].indicadorNomeBonito
+        
+        const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
+        if (!(not_12m.includes(indicatorKey))) {
+          this.chartTitle += ' 12m'
+        }
+
         this.loadChartDataItem(indicatorKey)
       }
     },
@@ -695,8 +705,8 @@ export default {
 
         // Function to map 'ano' and 'trimestre' to a date string
         const mapToQuarterEndMonth = (year, quarter) => {
-          const month = quarter === 1 ? '03' : quarter === 2 ? '06' : quarter === 3 ? '09' : '12';
-          return `${year}-${month}`;
+          const month_day = quarter === 1 ? '03-31' : quarter === 2 ? '06-30' : quarter === 3 ? '09-30' : '12-31';
+          return `${year}-${month_day}`;
         };
         
         // Generating labels using 'ano' and 'trimestre'
@@ -706,7 +716,7 @@ export default {
         const chartData = {
           labels: labels, // Extracting dates
           datasets: [{
-            label: indicatorKey, // You might want to customize this label
+            label: this.itens[indicatorKey].indicadorNomeBonito, // You might want to customize this label
             data: data, // Extracting values
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Example background color
             borderColor: 'rgba(54, 162, 235, 1)', // Example border color
