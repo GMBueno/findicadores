@@ -23,7 +23,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">Informações {{this.ticker.toUpperCase()}}</div>
+                <div class="flex-1 font-bold text-black cursor-default">Informações {{this.lockedTicker.toUpperCase()}}</div>
               </div>
               <!-- Individual Row 1 -->
               <div class="flex">
@@ -56,7 +56,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">Indicadores {{this.ticker.toUpperCase()}}</div>
+                <div class="flex-1 font-bold text-black cursor-default">Indicadores</div>
               </div>
               <!--Subheader Indicadores Valuation -->
               <div class="flex p-1 bg-blue-200">
@@ -260,8 +260,8 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">Resultado {{this.ticker.toUpperCase()}}</div>
-                <div class="flex-1 font-bold text-black cursor-default">Balanço {{this.ticker.toUpperCase()}}</div>
+                <div class="flex-1 font-bold text-black cursor-default">Resultado {{ this.balancoData }}</div>
+                <div class="flex-1 font-bold text-black cursor-default">Balanço {{ this.balancoData }}</div>
               </div>
               <!-- DRE / Balanço Row 1 -->
               <div class="flex">
@@ -465,6 +465,8 @@ export default {
       chartTitle: '',
       cotacoes: [],
       ticker: '',
+      lockedTicker: '',
+      balancoData: '',
       isLoading: false,
       indicators: {
         'ValorDeMercado': { indicadorNomeBonito: 'Market Cap', value: '' },
@@ -532,6 +534,7 @@ export default {
       this.fetchStockPriceHistory()
       this.fetchStockItens()
       this.isLoading = false
+      this.lockedTicker = this.ticker
     },
 
     async fetchStockIndicators() {
@@ -590,6 +593,7 @@ export default {
       try {
         const response = await fetch(endpoint, { headers: HEADERS })
         const data = await response.json()
+        this.balancoData = data[0]['ano'] + ' T' + data[0]['trimestre']
         
         // Update each indicator in the object
         Object.keys(this.itens).forEach(itemKey => {
