@@ -423,7 +423,7 @@
     </div>
     <div v-if="isLoading" stroke="blue" class="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
       <div>
-        <ProgressSpinner style="width: 100px; height: 100px" strokeWidth="8" animationDuration=".5s" />
+        <ProgressSpinner style="width: 100px height: 100px" strokeWidth="8" animationDuration=".5s" />
       </div>
     </div>
     <Dialog v-model:visible="isChartVisible" modal :header="chartTitle" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
@@ -436,9 +436,9 @@
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import ProgressSpinner from 'primevue/progressspinner'
-import Dialog from 'primevue/dialog';
-import Chart from 'primevue/chart';
-import LineChart from '/src/components/LineChart.vue';
+import Dialog from 'primevue/dialog'
+import Chart from 'primevue/chart'
+import LineChart from '/src/components/LineChart.vue'
 import tooltip from '/src/tooltip.js'
 
 export default {
@@ -659,9 +659,9 @@ export default {
             minimumFractionDigits: 1,
             maximumFractionDigits: 1,
             notation: 'compact'
-          });
+          })
 
-          formattedValue = formatter.format(value);
+          formattedValue = formatter.format(value)
         }
         this.itens[itemKey].valueString = formattedValue
       })
@@ -669,10 +669,10 @@ export default {
 
     showChart(indicatorKey) {
       if (this.ticker !== '') { 
-        this.chartData = {}; // resetting
-        this.chartOptions = {}; // resetting
-        this.currentIndicatorKey = indicatorKey;
-        this.isChartVisible = true;
+        this.chartData = {} // resetting
+        this.chartOptions = {} // resetting
+        this.currentIndicatorKey = indicatorKey
+        this.isChartVisible = true
         if (this.currentIndicatorKey == 'Preço') {
           this.chartTitle = this.ticker.toUpperCase() + ' Cotação'
           this.loadChartDataPrice(indicatorKey)
@@ -685,10 +685,10 @@ export default {
 
     showChartItem(indicatorKey) {
       if (this.ticker !== '') { 
-        this.chartData = {}; // resetting
-        this.chartOptions = {}; // resetting
-        this.currentIndicatorKey = indicatorKey;
-        this.isChartVisible = true;
+        this.chartData = {} // resetting
+        this.chartOptions = {} // resetting
+        this.currentIndicatorKey = indicatorKey
+        this.isChartVisible = true
         this.chartTitle = this.ticker.toUpperCase() + ' ' + this.itens[indicatorKey].indicadorNomeBonito
         
         const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
@@ -703,20 +703,20 @@ export default {
     loadChartDataItem(indicatorKey) {
       this.fetchStockItemHistory(indicatorKey).then(historicalData => {
         if (!historicalData) {
-          console.error("No historical data available");
-          return;
+          console.error("No historical data available")
+          return
         }
 
         const data = historicalData.map(item => item.valor)
 
         // Function to map 'ano' and 'trimestre' to a date string
         const mapToQuarterEndMonth = (year, quarter) => {
-          const month_day = quarter === 1 ? '03-31' : quarter === 2 ? '06-30' : quarter === 3 ? '09-30' : '12-31';
-          return `${year}-${month_day}`;
-        };
+          const month_day = quarter === 1 ? '03-31' : quarter === 2 ? '06-30' : quarter === 3 ? '09-30' : '12-31'
+          return `${year}-${month_day}`
+        }
         
         // Generating labels using 'ano' and 'trimestre'
-        const labels = historicalData.map(item => mapToQuarterEndMonth(item.ano, item.trimestre));
+        const labels = historicalData.map(item => mapToQuarterEndMonth(item.ano, item.trimestre))
 
         // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
         const chartData = {
@@ -732,7 +732,7 @@ export default {
             pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
             pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
-        };
+        }
 
         const options = {
           scales: {
@@ -758,22 +758,22 @@ export default {
               }
             }
           }
-        };
+        }
 
         // Assigning formatted chartData for chart rendering
-        this.chartData = chartData;
-        this.chartOptions = options;
+        this.chartData = chartData
+        this.chartOptions = options
 
       }).catch(error => {
-        console.error("Error loading chart ITEM data:", error);
-      });
+        console.error("Error loading chart ITEM data:", error)
+      })
     },
 
     loadChartData(indicatorKey) {
       this.fetchStockIndicatorHistory(indicatorKey).then(historicalData => {
         if (!historicalData) {
-          console.error("No historical data available");
-          return;
+          console.error("No historical data available")
+          return
         }
 
         // Check if the indicator is 'DividendYield' and multiply by 100 for percentage format
@@ -785,8 +785,8 @@ export default {
           indicatorKey === "MargemLiquida" ? item.valor * 100 :
           indicatorKey === "ROE" ? item.valor * 100 :
           indicatorKey === "ROA" ? item.valor * 100 :
-          indicatorKey === "ROIC" ? item.valor * 100 : item.valor;
-        });
+          indicatorKey === "ROIC" ? item.valor * 100 : item.valor
+        })
 
         // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
         const chartData = {
@@ -802,7 +802,7 @@ export default {
             pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
             pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
-        };
+        }
 
         const percentIndicators = {
           DividendYield: true,
@@ -813,7 +813,7 @@ export default {
           ROE: true,
           ROIC: true,
           ROA: true
-        };
+        }
 
         const currencyIndicators = {
           EV: true,
@@ -841,58 +841,58 @@ export default {
                 callback: function(value) {
                   // Check if the indicatorKey requires percentage formatting
                   if (percentIndicators[indicatorKey]) {
-                    return `${value}%`; // Format as percentage
+                    return `${value}%` // Format as percentage
                   } else if (currencyIndicators) {
                     const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
                     return(formatter.format(value))
                   } else {
-                    return value.toFixed(2); // Format as a decimal with two places
+                    return value.toFixed(2) // Format as a decimal with two places
                   }
                 }
               }
             }
           }
-        };
+        }
 
         // Assigning formatted chartData for chart rendering
-        this.chartData = chartData;
-        this.chartOptions = options;
+        this.chartData = chartData
+        this.chartOptions = options
 
       }).catch(error => {
-        console.error("Error loading chart INDICATOR data:", error);
-      });
+        console.error("Error loading chart INDICATOR data:", error)
+      })
     },
 
     loadChartDataPrice(indicatorKey) {
       // Assuming this.cotacoes contains your dataset and you want to extract precoFechamentoAjustado
-      const totalPoints = this.cotacoes.length;
-      const maxPoints = 200;
+      const totalPoints = this.cotacoes.length
+      const maxPoints = 200
 
       // Calculate the interval for sampling. Use Math.ceil to ensure you're rounding up to avoid skipping too many points.
-      const interval = Math.ceil(totalPoints / maxPoints);
+      const interval = Math.ceil(totalPoints / maxPoints)
 
       // Initialize an array to hold the sampled data points
-      let sampledData = [];
+      let sampledData = []
       let sampledDate = []
 
       // Ensure the most recent data point is always included
-      sampledData.push(this.cotacoes[0].precoFechamentoAjustado);
-      sampledDate.push(this.cotacoes[0].data);
+      sampledData.push(this.cotacoes[0].precoFechamentoAjustado)
+      sampledDate.push(this.cotacoes[0].data)
 
       // Iterate over the dataset in reverse, starting from the end, to pick data points at the calculated interval
       for (let i = totalPoints - 1; i > 0; i -= interval) {
           // Add the data point from the calculated position to the sampledData array
           // Use totalPoints - i - 1 to access data in reverse order
-          const index = totalPoints - i - 1;
+          const index = totalPoints - i - 1
           if (index !== 0) { // Avoid adding the most recent data point again
-              sampledData.push(this.cotacoes[index].precoFechamentoAjustado);
-              sampledDate.push(this.cotacoes[index].data);
+              sampledData.push(this.cotacoes[index].precoFechamentoAjustado)
+              sampledDate.push(this.cotacoes[index].data)
           }
       }
 
         // Since we iterated in reverse, reverse the array to start with the most recent data point
-        sampledData = sampledData.reverse();
-        sampledDate = sampledDate.reverse();
+        sampledData = sampledData.reverse()
+        sampledDate = sampledDate.reverse()
 
         // Assuming chartData expects 'labels' for the x-axis (dates) and 'datasets' containing 'data' for the y-axis (values)
         const chartData = {
@@ -908,7 +908,7 @@ export default {
             pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Solid color for dots
             pointBorderColor: 'rgba(54, 162, 235, 1)', // Ensuring the border color matches the fill for a solid appearance
           }]
-        };
+        }
 
         const options = {
           scales: {
@@ -934,11 +934,11 @@ export default {
               }
             }
           }
-        };
+        }
 
       // Assigning formatted chartData for chart rendering
-      this.chartData = chartData;
-      this.chartOptions = options;
+      this.chartData = chartData
+      this.chartOptions = options
     },
 
     async fetchStockItemHistory(indicatorKey) {
@@ -985,7 +985,7 @@ export default {
 
   computed: {
     isChartDataReady() {
-      return true; // Or any other appropriate check
+      return true // Or any other appropriate check
     }
   },
 }
@@ -998,19 +998,19 @@ export default {
   border-top: 4px solid #fff;
   width: 50px;
   height: 50px;
-  -webkit-animation: spin 1s linear infinite; /* Safari */
+  -webkit-animation: spin 1s linear infinite /* Safari */;
   animation: spin 1s linear infinite;
 }
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% { -webkit-transform: rotate(0deg) };
+  100% { -webkit-transform: rotate(360deg) };
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(0deg) };
+  100% { transform: rotate(360deg) };
 }
 
 @keyframes p-progress-spinner-color {
