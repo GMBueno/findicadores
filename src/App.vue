@@ -530,11 +530,23 @@ export default {
   methods: {
     async fetchData() {
       this.isLoading = true
-      await this.fetchStockIndicators()
-      this.fetchStockPriceHistory()
-      this.fetchStockItens()
+      // cleaning the UI (resets data) 
+      this.cotacoes = []
+      this.balancoData = ''
+      Object.keys(this.indicators).forEach(key => {
+        this.indicators[key].value = ''
+        this.indicators[key].valueString = ''
+      })
+      Object.keys(this.itens).forEach(key => {
+        this.itens[key].value = ''
+        this.itens[key].valueString = ''
+      })
+      // getting data
+      await this.fetchStockIndicators() // only wait for this one so seems fast
+      this.fetchStockPriceHistory() // loads later
+      this.fetchStockItens() // loads later
       this.isLoading = false
-      this.lockedTicker = this.ticker
+      this.lockedTicker = this.ticker // so changing input field doesn't mess up headers
     },
 
     async fetchStockIndicators() {
