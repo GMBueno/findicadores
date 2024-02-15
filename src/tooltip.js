@@ -1,0 +1,33 @@
+const tooltip = {
+  ValorDeMercado: 'Cotação x Quantidade de ações. Valor de Mercado: Representa o valor total de uma empresa na bolsa de valores, calculado multiplicando-se o preço atual de suas ações pelo total de ações emitidas. Indica o tamanho de mercado e a percepção de valor pelos investidores.',
+  EV: 'Valor de Mercado + Dívida Líquida. Valor de Firma. Oferece uma visão mais completa do valor da empresa, incluindo dívidas e reservas de caixa.',
+  P_L: 'Preço/Lucro. Mostra o múltiplo do lucro líquido anual pelo qual as ações da empresa estão sendo negociadas. Indica o tempo necessário para recuperar o investimento via lucros da empresa.',
+  P_EBIT: 'P/EBIT. Preço da ação dividido pelo EBIT por ação. Avalia a eficiência operacional e a capacidade de geração de lucro operacional da empresa.',
+  DividendYield: 'Proventos últimos 12m/Preço. Indica o retorno de dividendos de um investimento em ações.',
+  P_VP: 'Preço/Patrimônio Líquido. Avalia se a empresa está negociada acima ou abaixo do seu valor contábil.',
+  EV_EBIT: 'Valor de Firma/EBIT. Utilizado para avaliar se a empresa está subavaliada ou sobreavaliada, independentemente de sua estrutura de capital.',
+  EV_EBITDA: 'Valor de Firma/EBITDA. Preço da ação dividido pelo EBITDA por ação. Fornece uma medida da avaliação da empresa relativa à sua geração de caixa operacional.',
+  P_EBITDA: 'Preço/EBITDA. Fornece uma medida da avaliação da empresa relativa à sua geração de caixa operacional.',
+  VPA: 'Valor Patrimonial por ação. Indica o valor teórico de cada ação baseado no patrimônio líquido.',
+  P_Ativos: 'Preço/Ativos. Avalia quão bem o mercado valoriza os ativos da empresa em relação ao seu preço de mercado.',
+  LPA: 'Lucro por ação. Mede a parcela do lucro da empresa atribuída a cada ação.',
+  P_SR: 'Preço/Receita. Ajuda a avaliar a valorização de uma empresa em relação à sua geração de receitas.',
+  P_CapitalDeGiro: 'Preço/Capital de Giro. Avalia como o mercado valoriza a capacidade da empresa de financiar suas operações correntes.',
+  P_AtivoCirculanteLiquido: 'Preço/Ativo Circulante Líquido. Indica a avaliação de mercado do ativo circulante líquido da empresa.',
+  DividaLiquida_PatrimonioLiquido: 'Dívida Líquida/Patrimônio Líquido. Utilizado para avaliar o grau de alavancagem financeira.',
+  DividaLiquida_EBITDA: 'Dívida Líquida/EBITDA. Mede a capacidade da empresa de pagar sua dívida com a geração de caixa operacional.',
+  DividaLiquida_EBIT: 'Dívida Líquida/EBIT. Avalia a capacidade de pagamento da dívida com base na geração de lucro operacional.',
+  PatrimonioLiquido_Ativos: 'Patrimônio Líquido/Ativos. Indica a proporção de financiamento da empresa que vem de fontes internas.',
+  Passivos_Ativos: 'Passivos/Ativos. Mostra a dependência da empresa em relação a financiamentos externos.',
+  LiquidezCorrente: 'Ativo Circulante/Passivo Circulante. Liquidez Corrente. Mede a capacidade da empresa de pagar suas obrigações de curto prazo.',
+  MargemBruta: 'Resultado Bruto/Receita Líquida. Percentual da receita que resta após deduzir os custos dos bens ou serviços vendidos.',
+  MargemEBITDA: 'EBTIDA/Receita Líquida. Reflete a eficiência operacional antes de juros, impostos, depreciação e amortização.',
+  MargemEBIT: 'EBIT/Receita Líquida. Mede a eficiência operacional da empresa após o custo dos bens vendidos e despesas operacionais.',
+  MargemLiquida: 'Lucro Líquido/Receita Líquida. Indica o quanto a empresa retém de cada unidade de venda após todas as despesas.',
+  ROE: 'Lucro Líquido/PL. Retorno sobre o Patrimônio Líquido. Mede a capacidade da empresa de gerar valor para os acionistas.',
+  ROIC: '(EBIT - Impostos)/(PL + Dívida Líquida). Retorno sobre o Capital Investido. Avalia a eficiência da empresa em alocar o capital disponível.',
+  ROA: 'Lucro Líquido/Ativo. Retorno sobre Ativos. Mede a eficiência da empresa em usar seus ativos para gerar lucro.',
+  GiroAtivos: 'Receita Líquida/Ativos. Giro de Ativos. Indica a eficiência com que a empresa utiliza seus ativos para gerar vendas.'
+};
+
+export default tooltip;
