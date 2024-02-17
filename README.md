@@ -1,4 +1,7 @@
-# Findicadores.com.br
+# Findicadores
+
+Disponível em:
+[https://gmbueno.github.io/findicadores/](https://gmbueno.github.io/findicadores/)
 
 ## Sobre o site
 
@@ -23,3 +26,7 @@ Gráfico Histórico (só clicar no indicador)
 
 ### Rodar
 `npm run dev`
+
+### Deployar
+`npm run build`
+`npm run deploy` // script customizado do pacote gh-pages
