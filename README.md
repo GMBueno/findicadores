@@ -1,3 +1,25 @@
 # Findicadores.com.br
 
-![v2-print.png](src/assets/v1-print.png)
+## Sobre o site
+
+Busque uma ação e acesse rapidamente:
+- indicadores
+- resultado
+- cotação
+- gráficos de cada um desses
+
+### Exemplo com PETR4
+
+Dados gerais
+![PETR4.png](src/assets/PETR4.png)
+
+Gráfico Histórico (só clicar no indicador)
+![PETR4.png](src/assets/PETR4_LPA.png)
+
+## Rodar local
+
+### Instalar
+`npm install`
+
+### Rodar
+`npm run dev`
