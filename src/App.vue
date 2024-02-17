@@ -30,19 +30,19 @@
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help">Preço</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4">
+                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
                   <span @click="showChart('Preço')" class="cursor-pointer">{{ this.cotacoes.length > 0 ? 'R$' + this.cotacoes[0].precoFechamento : '' }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="tooltip['ValorDeMercado']">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4">
+                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
                   <span @click="showChart('ValorDeMercado')" class="cursor-pointer">{{ this.indicators['ValorDeMercado'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="tooltip['EV']">{{ this.indicators['EV'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4">
+                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
                   <span @click="showChart('EV')" class="cursor-pointer">{{ this.indicators['EV'].valueString }}</span>
                 </div>
               </div>
@@ -67,13 +67,13 @@
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="this.tooltip['DividendYield']">{{ this.indicators['DividendYield'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4">
+                <div class="flex-1 px-4 py-0 text-left">
                   <span @click="showChart('DividendYield')" class="cursor-pointer">{{ this.indicators['DividendYield'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help" v-tooltip="tooltip['P_VP']">{{ this.indicators['P_VP'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4">
+                <div class="flex-1 px-4 py-0 text-left">
                   <span @click="showChart('P_VP')" class="cursor-pointer">{{ this.indicators['P_VP'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
