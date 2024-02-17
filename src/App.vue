@@ -428,6 +428,7 @@ import Chart from 'primevue/chart'
 import LineChart from '/src/components/LineChart.vue'
 import tooltip from '/src/tooltip.js'
 import Navbar from '/src/components/Navbar.vue'
+import Fintz from '/src/api/fintz.js'
 
 export default {
   name: 'App',
@@ -523,7 +524,16 @@ export default {
 
     async fetchData() {
       this.isLoading = true
-      // cleaning the UI (resets data) 
+      this.cleanUI()
+      await this.buscarIndicadores() // only wait for this one so seems fast
+      this.buscarItensContabeis() // loads later
+      this.buscarCotacoes() // loads later
+      this.isLoading = false
+      this.lockedTicker = this.ticker // so changing input field doesn't mess up headers
+    },
+
+    // cleaning the UI (resets data) 
+    cleanUI() {
       this.cotacoes = []
       this.balancoData = ''
       Object.keys(this.indicators).forEach(key => {
@@ -534,91 +544,82 @@ export default {
         this.itens[key].value = ''
         this.itens[key].valueString = ''
       })
-      // getting data
-      await this.fetchStockIndicators() // only wait for this one so seems fast
-      this.fetchStockPriceHistory() // loads later
-      this.fetchStockItens() // loads later
-      this.isLoading = false
-      this.lockedTicker = this.ticker // so changing input field doesn't mess up headers
     },
 
-    async fetchStockIndicators() {
-      const URL_BASE = 'https://api.fintz.com.br'
-      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
-      const PARAMS = new URLSearchParams({ ticker: this.ticker.toUpperCase() })
-
-      const endpoint = `${URL_BASE}/bolsa/b3/avista/indicadores/por-ticker?${PARAMS.toString()}`
-
+    async buscarIndicadores() {
       try {
-        const response = await fetch(endpoint, { headers: HEADERS })
-        const data = await response.json()
-        
-        // Update each indicator in the object
-        Object.keys(this.indicators).forEach(indicatorKey => {
-          const apiValue = data.find(item => item.indicador === indicatorKey)?.valor || '-'
-          this.indicators[indicatorKey].value = apiValue
-        })
-        
-        // After updating values, format them
-        this.formatIndicatorValues()
+        const data = await Fintz.getFintzIndicadores(this.ticker);
+        await this.processarIndicadores.call(this, data); // Use `.call` to ensure `this` context is preserved
       } catch (error) {
-        console.error("Failed to fetch stock indicators:", error)
-        // Handle error for each indicator
-        Object.keys(this.indicators).forEach(indicatorKey => {
-          this.indicators[indicatorKey].valueString = 'Error'
-        })
-        this.formatIndicatorValues() // Format even if there's an error to ensure consistent UI
+        console.error("Failed to fetch or process stock indicators:", error);
       }
     },
 
-    async fetchStockPriceHistory() {
-      const URL_BASE = 'https://api.fintz.com.br'
-      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
-      const PARAMS = new URLSearchParams({ ticker: this.ticker.toUpperCase(), dataInicio: '2010-01-01' })
-
-      const endpoint = `${URL_BASE}/bolsa/b3/avista/cotacoes/historico?${PARAMS.toString()}`
-
+    async processarIndicadores(data) {
       try {
-        const response = await fetch(endpoint, { headers: HEADERS })
-        const data = await response.json()
-        this.cotacoes = data
-      
+        // Assuming 'this.indicators' is available in the scope this function is called
+        Object.keys(this.indicators).forEach(indicatorKey => {
+          const apiValue = data.find(item => item.indicador === indicatorKey)?.valor || '-';
+          this.indicators[indicatorKey].value = apiValue;
+        });
+
+        // After updating values, format them
+        this.formatarStringIndicadores();
       } catch (error) {
-        console.error("Failed to fetch stock price history", error)
+        console.error("Error processing stock data:", error);
+        // Handle error for each indicator
+        Object.keys(this.indicators).forEach(indicatorKey => {
+          this.indicators[indicatorKey].valueString = 'Error';
+        });
+        this.formatarStringIndicadores(); // Format even if there's an error to ensure consistent UI
       }
     },
 
-    async fetchStockItens() {
-      const URL_BASE = 'https://api.fintz.com.br'
-      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
-      const PARAMS = new URLSearchParams({ ticker: this.ticker.toUpperCase() })
-
-      const endpoint = `${URL_BASE}/bolsa/b3/avista/itens-contabeis/por-ticker?${PARAMS.toString()}`
-
+    async buscarCotacoes() {
       try {
-        const response = await fetch(endpoint, { headers: HEADERS })
-        const data = await response.json()
-        this.balancoData = data[0]['ano'] + ' T' + data[0]['trimestre']
-        
-        // Update each indicator in the object
-        Object.keys(this.itens).forEach(itemKey => {
-          const apiValue = data.find(item => item.item === itemKey)?.valor || '-'
-          this.itens[itemKey].value = apiValue
-        })
-        
-        // After updating values, format them
-        this.formatItemValues()
+        const data = await Fintz.getFintzCotacoes(this.ticker);
+        this.processarCotacoes.call(this, data); // Ensure 'this' context is correct
       } catch (error) {
-        console.error("Failed to fetch stock itens:", error)
+        console.error("Failed to fetch or set stock price history:", error);
+      }
+    },
+
+    processarCotacoes(data) {
+      this.cotacoes = data;
+    },
+
+    async buscarItensContabeis() {
+      try {
+        const data = await Fintz.getFintzItensContabeis(this.ticker);
+        await this.processarItensContabeis.call(this, data); // Ensure 'this' context is correct
+      } catch (error) {
+        console.error("Failed to fetch or process stock items:", error);
+      }
+    },
+
+    async processarItensContabeis(data) {
+      try {
+        // Assuming 'this.balancoData' and 'this.itens' are available in this scope
+        this.balancoData = data[0]['ano'] + ' T' + data[0]['trimestre'];
+
+        Object.keys(this.itens).forEach(itemKey => {
+          const apiValue = data.find(item => item.item === itemKey)?.valor || '-';
+          this.itens[itemKey].value = apiValue;
+        });
+
+        // After updating values, format them
+        this.formatarStringItens();
+      } catch (error) {
+        console.error("Error processing stock items:", error);
         // Handle error for each indicator
         Object.keys(this.itens).forEach(itemKey => {
-          this.itens[itemKey].valueString = 'Error'
-        })
-        this.formatItemValues() // Format even if there's an error to ensure consistent UI
+          this.itens[itemKey].valueString = 'Error';
+        });
+        this.formatarStringItens(); // Format even if there's an error to ensure consistent UI
       }
     },
     
-    formatIndicatorValues() {
+    formatarStringIndicadores() {
       Object.keys(this.indicators).forEach(indicatorKey => {
         let formattedValue = this.indicators[indicatorKey].value
         if (!isNaN(formattedValue) && formattedValue !== '-' && formattedValue !== 'Error') {
@@ -653,7 +654,7 @@ export default {
       })
     },
     
-    formatItemValues() {
+    formatarStringItens() {
       Object.keys(this.itens).forEach(itemKey => {
         let formattedValue = this.itens[itemKey].value
         const value = formattedValue
