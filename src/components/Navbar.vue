@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex items-center py-3 justify-between mb-12 px-10 bg-white text-slate-600">
+  <nav class="flex items-center py-3 justify-between mb-7 px-10 bg-white text-slate-600">
     <div class="flex items-center"> <!-- Wrap the logo and title in a div to align them side by side -->
       <img src="/src/assets/icone-positivo.png" alt="Logo" class="h-8 mr-2"> <!-- Adjust the class as needed -->
       <h2 class="text-2xl font-semibold">findicadores.com.br</h2>

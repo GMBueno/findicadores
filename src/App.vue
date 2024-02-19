@@ -6,7 +6,7 @@
 
         <!-- Tabela Informações / Infos Gerais -->
         <div class="mx-auto max-w-screen-lg">
-          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-10">
+          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-7">
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
@@ -15,22 +15,22 @@
               <!-- Individual Row 1 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help">Preço</span>
+                  <span class="cursor-help text-black">Preço</span>
                 </div>
                 <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
-                  <span @click="showChart('Preço')" class="cursor-pointer">{{ this.cotacoes.length > 0 ? 'R$' + this.cotacoes[0].precoFechamento : '' }}</span>
+                  <span @click="showChart('Preço')" class="cursor-pointer text-black">{{ this.cotacoes.length > 0 ? 'R$' + this.cotacoes[0].precoFechamento : '' }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['ValorDeMercado']">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['ValorDeMercado']">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
-                  <span @click="showChart('ValorDeMercado')" class="cursor-pointer">{{ this.indicators['ValorDeMercado'].valueString }}</span>
+                  <span @click="showChart('ValorDeMercado')" class="cursor-pointer text-black">{{ this.indicators['ValorDeMercado'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['EV']">{{ this.indicators['EV'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['EV']">{{ this.indicators['EV'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
-                  <span @click="showChart('EV')" class="cursor-pointer">{{ this.indicators['EV'].valueString }}</span>
+                  <span @click="showChart('EV')" class="cursor-pointer text-black">{{ this.indicators['EV'].valueString }}</span>
                 </div>
               </div>
             </div>
@@ -39,203 +39,203 @@
 
         <!-- Tabela de Indicadores -->
         <div class="mx-auto max-w-screen-lg">
-          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-10">
+          <div class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-7">
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
                 <div class="flex-1 font-bold text-black cursor-default">Indicadores</div>
               </div>
               <!--Subheader Indicadores Valuation -->
-              <div class="flex p-1 bg-blue-200">
+              <div class="flex p-0 bg-blue-200">
                 <div class="flex-1 font-semibold cursor-default">Valuation</div>
               </div>
               <!-- Individual Row 1 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="this.tooltip['DividendYield']">{{ this.indicators['DividendYield'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="this.tooltip['DividendYield']">{{ this.indicators['DividendYield'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividendYield')" class="cursor-pointer">{{ this.indicators['DividendYield'].valueString }}</span>
+                  <span @click="showChart('DividendYield')" class="cursor-pointer text-black">{{ this.indicators['DividendYield'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_VP']">{{ this.indicators['P_VP'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_VP']">{{ this.indicators['P_VP'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_VP')" class="cursor-pointer">{{ this.indicators['P_VP'].valueString }}</span>
+                  <span @click="showChart('P_VP')" class="cursor-pointer text-black">{{ this.indicators['P_VP'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['EV_EBIT']">{{ this.indicators['EV_EBIT'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['EV_EBIT']">{{ this.indicators['EV_EBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('EV_EBIT')" class="cursor-pointer">{{ this.indicators['EV_EBIT'].valueString }}</span>
+                  <span @click="showChart('EV_EBIT')" class="cursor-pointer text-black">{{ this.indicators['EV_EBIT'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 2 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_EBITDA']">{{ this.indicators['P_EBITDA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_EBITDA']">{{ this.indicators['P_EBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_EBITDA')" class="cursor-pointer">{{ this.indicators['P_EBITDA'].valueString }}</span>
+                  <span @click="showChart('P_EBITDA')" class="cursor-pointer text-black">{{ this.indicators['P_EBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['VPA']">{{ this.indicators['VPA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['VPA']">{{ this.indicators['VPA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('VPA')" class="cursor-pointer">{{ this.indicators['VPA'].valueString }}</span>
+                  <span @click="showChart('VPA')" class="cursor-pointer text-black">{{ this.indicators['VPA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_Ativos']">{{ this.indicators['P_Ativos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_Ativos']">{{ this.indicators['P_Ativos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_Ativos')" class="cursor-pointer">{{ this.indicators['P_Ativos'].valueString }}</span>
+                  <span @click="showChart('P_Ativos')" class="cursor-pointer text-black">{{ this.indicators['P_Ativos'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 3 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_L']">{{ this.indicators['P_L'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_L']">{{ this.indicators['P_L'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_L')" class="cursor-pointer">{{ this.indicators['P_L'].valueString }}</span>
+                  <span @click="showChart('P_L')" class="cursor-pointer text-black">{{ this.indicators['P_L'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['EV_EBITDA']">{{ this.indicators['EV_EBITDA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['EV_EBITDA']">{{ this.indicators['EV_EBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('EV_EBITDA')" class="cursor-pointer">{{ this.indicators['EV_EBITDA'].valueString }}</span>
+                  <span @click="showChart('EV_EBITDA')" class="cursor-pointer text-black">{{ this.indicators['EV_EBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_SR']">{{ this.indicators['P_SR'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_SR']">{{ this.indicators['P_SR'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_SR')" class="cursor-pointer">{{ this.indicators['P_SR'].valueString }}</span>
+                  <span @click="showChart('P_SR')" class="cursor-pointer text-black">{{ this.indicators['P_SR'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 4 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_EBIT']">{{ this.indicators['P_EBIT'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_EBIT']">{{ this.indicators['P_EBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_EBIT')" class="cursor-pointer">{{ this.indicators['P_EBIT'].valueString }}</span>
+                  <span @click="showChart('P_EBIT')" class="cursor-pointer text-black">{{ this.indicators['P_EBIT'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['LPA']">{{ this.indicators['LPA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['LPA']">{{ this.indicators['LPA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('LPA')" class="cursor-pointer">{{ this.indicators['LPA'].valueString }}</span>
+                  <span @click="showChart('LPA')" class="cursor-pointer text-black">{{ this.indicators['LPA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['P_CapitalDeGiro']">{{ this.indicators['P_CapitalDeGiro'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['P_CapitalDeGiro']">{{ this.indicators['P_CapitalDeGiro'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('P_CapitalDeGiro')" class="cursor-pointer">{{ this.indicators['P_CapitalDeGiro'].valueString }}</span>
+                  <span @click="showChart('P_CapitalDeGiro')" class="cursor-pointer text-black">{{ this.indicators['P_CapitalDeGiro'].valueString }}</span>
                 </div>
               </div>
               <!--Subheader Indicadores Endividamento -->
-              <div class="flex p-1 bg-blue-200">
+              <div class="flex p-0 bg-blue-200">
                 <div class="flex-1 font-semibold cursor-default">Endividamento</div>
               </div>
               <!-- Individual Row 6 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['DividaLiquida_PatrimonioLiquido']">{{ this.indicators['DividaLiquida_PatrimonioLiquido'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['DividaLiquida_PatrimonioLiquido']">{{ this.indicators['DividaLiquida_PatrimonioLiquido'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividaLiquida_PatrimonioLiquido')" class="cursor-pointer">{{ this.indicators['DividaLiquida_PatrimonioLiquido'].valueString }}</span>
+                  <span @click="showChart('DividaLiquida_PatrimonioLiquido')" class="cursor-pointer text-black">{{ this.indicators['DividaLiquida_PatrimonioLiquido'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['DividaLiquida_EBITDA']">{{ this.indicators['DividaLiquida_EBITDA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['DividaLiquida_EBITDA']">{{ this.indicators['DividaLiquida_EBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividaLiquida_EBITDA')" class="cursor-pointer">{{ this.indicators['DividaLiquida_EBITDA'].valueString }}</span>
+                  <span @click="showChart('DividaLiquida_EBITDA')" class="cursor-pointer text-black">{{ this.indicators['DividaLiquida_EBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['DividaLiquida_EBIT']">{{ this.indicators['DividaLiquida_EBIT'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['DividaLiquida_EBIT']">{{ this.indicators['DividaLiquida_EBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('DividaLiquida_EBIT')" class="cursor-pointer">{{ this.indicators['DividaLiquida_EBIT'].valueString }}</span>
+                  <span @click="showChart('DividaLiquida_EBIT')" class="cursor-pointer text-black">{{ this.indicators['DividaLiquida_EBIT'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 7 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['PatrimonioLiquido_Ativos']">{{ this.indicators['PatrimonioLiquido_Ativos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['PatrimonioLiquido_Ativos']">{{ this.indicators['PatrimonioLiquido_Ativos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('PatrimonioLiquido_Ativos')" class="cursor-pointer">{{ this.indicators['PatrimonioLiquido_Ativos'].valueString }}</span>
+                  <span @click="showChart('PatrimonioLiquido_Ativos')" class="cursor-pointer text-black">{{ this.indicators['PatrimonioLiquido_Ativos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['Passivos_Ativos']">{{ this.indicators['Passivos_Ativos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['Passivos_Ativos']">{{ this.indicators['Passivos_Ativos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('Passivos_Ativos')" class="cursor-pointer">{{ this.indicators['Passivos_Ativos'].valueString }}</span>
+                  <span @click="showChart('Passivos_Ativos')" class="cursor-pointer text-black">{{ this.indicators['Passivos_Ativos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['LiquidezCorrente']">{{ this.indicators['LiquidezCorrente'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['LiquidezCorrente']">{{ this.indicators['LiquidezCorrente'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('LiquidezCorrente')" class="cursor-pointer">{{ this.indicators['LiquidezCorrente'].valueString }}</span>
+                  <span @click="showChart('LiquidezCorrente')" class="cursor-pointer text-black">{{ this.indicators['LiquidezCorrente'].valueString }}</span>
                 </div>
               </div>
               <!--Subheader Indicadores Eficiência -->
-              <div class="flex p-1 bg-blue-200">
+              <div class="flex p-0 bg-blue-200">
                 <div class="flex-1 font-semibold cursor-default">Eficiência</div>
                 <div class="flex-1 font-semibold cursor-default">Rentabilidade</div>
               </div>
               <!-- Individual Row 6 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['MargemBruta']">{{ this.indicators['MargemBruta'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['MargemBruta']">{{ this.indicators['MargemBruta'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('MargemBruta')" class="cursor-pointer">{{ this.indicators['MargemBruta'].valueString }}</span>
+                  <span @click="showChart('MargemBruta')" class="cursor-pointer text-black">{{ this.indicators['MargemBruta'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['MargemEBITDA']">{{ this.indicators['MargemEBITDA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['MargemEBITDA']">{{ this.indicators['MargemEBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('MargemEBITDA')" class="cursor-pointer">{{ this.indicators['MargemEBITDA'].valueString }}</span>
+                  <span @click="showChart('MargemEBITDA')" class="cursor-pointer text-black">{{ this.indicators['MargemEBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['ROE']">{{ this.indicators['ROE'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['ROE']">{{ this.indicators['ROE'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ROE')" class="cursor-pointer">{{ this.indicators['ROE'].valueString }}</span>
+                  <span @click="showChart('ROE')" class="cursor-pointer text-black">{{ this.indicators['ROE'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['ROIC']">{{ this.indicators['ROIC'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['ROIC']">{{ this.indicators['ROIC'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ROIC')" class="cursor-pointer">{{ this.indicators['ROIC'].valueString }}</span>
+                  <span @click="showChart('ROIC')" class="cursor-pointer text-black">{{ this.indicators['ROIC'].valueString }}</span>
                 </div>
               </div>
               <!-- Individual Row 6 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['MargemEBIT']">{{ this.indicators['MargemEBIT'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['MargemEBIT']">{{ this.indicators['MargemEBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('MargemEBIT')" class="cursor-pointer">{{ this.indicators['MargemEBIT'].valueString }}</span>
+                  <span @click="showChart('MargemEBIT')" class="cursor-pointer text-black">{{ this.indicators['MargemEBIT'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['MargemLiquida']">{{ this.indicators['MargemLiquida'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['MargemLiquida']">{{ this.indicators['MargemLiquida'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('MargemLiquida')" class="cursor-pointer">{{ this.indicators['MargemLiquida'].valueString }}</span>
+                  <span @click="showChart('MargemLiquida')" class="cursor-pointer text-black">{{ this.indicators['MargemLiquida'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['ROA']">{{ this.indicators['ROA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['ROA']">{{ this.indicators['ROA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('ROA')" class="cursor-pointer">{{ this.indicators['ROA'].valueString }}</span>
+                  <span @click="showChart('ROA')" class="cursor-pointer text-black">{{ this.indicators['ROA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help" v-tooltip="tooltip['GiroAtivos']">{{ this.indicators['GiroAtivos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['GiroAtivos']">{{ this.indicators['GiroAtivos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('GiroAtivos')" class="cursor-pointer">{{ this.indicators['GiroAtivos'].valueString }}</span>
+                  <span @click="showChart('GiroAtivos')" class="cursor-pointer text-black">{{ this.indicators['GiroAtivos'].valueString }}</span>
                 </div>
               </div>
             </div>
@@ -253,151 +253,151 @@
               <!-- DRE / Balanço Row 1 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['ReceitaLiquida'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['ReceitaLiquida'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('ReceitaLiquida')" class="cursor-pointer">{{ this.itens['ReceitaLiquida'].valueString }}</span>
+                  <span @click="showChartItem('ReceitaLiquida')" class="cursor-pointer text-black">{{ this.itens['ReceitaLiquida'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['PatrimonioLiquido'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['PatrimonioLiquido'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('PatrimonioLiquido')" class="cursor-pointer">{{ this.itens['PatrimonioLiquido'].valueString }}</span>
+                  <span @click="showChartItem('PatrimonioLiquido')" class="cursor-pointer text-black">{{ this.itens['PatrimonioLiquido'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 2 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['Custos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['Custos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('Custos')" class="cursor-pointer">{{ this.itens['Custos'].valueString }}</span>
+                  <span @click="showChartItem('Custos')" class="cursor-pointer text-black">{{ this.itens['Custos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['AtivoTotal'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['AtivoTotal'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('AtivoTotal')" class="cursor-pointer">{{ this.itens['AtivoTotal'].valueString }}</span>
+                  <span @click="showChartItem('AtivoTotal')" class="cursor-pointer text-black">{{ this.itens['AtivoTotal'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 3 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['ResultadoBruto'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['ResultadoBruto'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('ResultadoBruto')" class="cursor-pointer">{{ this.itens['ResultadoBruto'].valueString }}</span>
+                  <span @click="showChartItem('ResultadoBruto')" class="cursor-pointer text-black">{{ this.itens['ResultadoBruto'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['PassivoTotal'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['PassivoTotal'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('PassivoTotal')" class="cursor-pointer">{{ this.itens['PassivoTotal'].valueString }}</span>
+                  <span @click="showChartItem('PassivoTotal')" class="cursor-pointer text-black">{{ this.itens['PassivoTotal'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 4 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
+                  <span @click="showChartItem('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer text-black">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['DividaBruta'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['DividaBruta'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('DividaBruta')" class="cursor-pointer">{{ this.itens['DividaBruta'].valueString }}</span>
+                  <span @click="showChartItem('DividaBruta')" class="cursor-pointer text-black">{{ this.itens['DividaBruta'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 5 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['EBIT'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['EBIT'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('EBIT')" class="cursor-pointer">{{ this.itens['EBIT'].valueString }}</span>
+                  <span @click="showChartItem('EBIT')" class="cursor-pointer text-black">{{ this.itens['EBIT'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['DividaLiquida'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['DividaLiquida'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('DividaLiquida')" class="cursor-pointer">{{ this.itens['DividaLiquida'].valueString }}</span>
+                  <span @click="showChartItem('DividaLiquida')" class="cursor-pointer text-black">{{ this.itens['DividaLiquida'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 6 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['EBITDA'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['EBITDA'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('EBITDA')" class="cursor-pointer">{{ this.itens['EBITDA'].valueString }}</span>
+                  <span @click="showChartItem('EBITDA')" class="cursor-pointer text-black">{{ this.itens['EBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['Disponibilidades'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['Disponibilidades'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('Disponibilidades')" class="cursor-pointer">{{ this.itens['Disponibilidades'].valueString }}</span>
+                  <span @click="showChartItem('Disponibilidades')" class="cursor-pointer text-black">{{ this.itens['Disponibilidades'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 7 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['ResultadoFinanceiro'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['ResultadoFinanceiro'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('ResultadoFinanceiro')" class="cursor-pointer">{{ this.itens['ResultadoFinanceiro'].valueString }}</span>
+                  <span @click="showChartItem('ResultadoFinanceiro')" class="cursor-pointer text-black">{{ this.itens['ResultadoFinanceiro'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['AtivoCirculante'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['AtivoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('AtivoCirculante')" class="cursor-pointer">{{ this.itens['AtivoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('AtivoCirculante')" class="cursor-pointer text-black">{{ this.itens['AtivoCirculante'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 8 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['LAIR'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['LAIR'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('LAIR')" class="cursor-pointer">{{ this.itens['LAIR'].valueString }}</span>
+                  <span @click="showChartItem('LAIR')" class="cursor-pointer text-black">{{ this.itens['LAIR'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['AtivoNaoCirculante'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['AtivoNaoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('AtivoNaoCirculante')" class="cursor-pointer">{{ this.itens['AtivoNaoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('AtivoNaoCirculante')" class="cursor-pointer text-black">{{ this.itens['AtivoNaoCirculante'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 9 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['Impostos'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['Impostos'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('Impostos')" class="cursor-pointer">{{ this.itens['Impostos'].valueString }}</span>
+                  <span @click="showChartItem('Impostos')" class="cursor-pointer text-black">{{ this.itens['Impostos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['PassivoCirculante'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['PassivoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('PassivoCirculante')" class="cursor-pointer">{{ this.itens['PassivoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('PassivoCirculante')" class="cursor-pointer text-black">{{ this.itens['PassivoCirculante'].valueString }}</span>
                 </div>
               </div>
               <!-- DRE / Balanço Row 9 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['LucroLiquidoSociosControladora'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['LucroLiquidoSociosControladora'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('LucroLiquidoSociosControladora')" class="cursor-pointer">{{ this.itens['LucroLiquidoSociosControladora'].valueString }}</span>
+                  <span @click="showChartItem('LucroLiquidoSociosControladora')" class="cursor-pointer text-black">{{ this.itens['LucroLiquidoSociosControladora'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-default">{{ this.itens['PassivoNaoCirculante'].indicadorNomeBonito }}</span>
+                  <span class="cursor-default text-black">{{ this.itens['PassivoNaoCirculante'].indicadorNomeBonito }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChartItem('PassivoNaoCirculante')" class="cursor-pointer">{{ this.itens['PassivoNaoCirculante'].valueString }}</span>
+                  <span @click="showChartItem('PassivoNaoCirculante')" class="cursor-pointer text-black">{{ this.itens['PassivoNaoCirculante'].valueString }}</span>
                 </div>
               </div>
             </div>
