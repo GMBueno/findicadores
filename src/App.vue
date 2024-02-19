@@ -47,7 +47,7 @@
               </div>
               <!--Subheader Indicadores Valuation -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default">Valuation</div>
+                <div class="flex-1 font-semibold cursor-default text-black">Valuation</div>
               </div>
               <!-- Individual Row 1 -->
               <div class="flex">
@@ -135,7 +135,7 @@
               </div>
               <!--Subheader Indicadores Endividamento -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default">Endividamento</div>
+                <div class="flex-1 font-semibold cursor-default text-black">Endividamento</div>
               </div>
               <!-- Individual Row 6 -->
               <div class="flex">
@@ -181,8 +181,8 @@
               </div>
               <!--Subheader Indicadores Eficiência -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default">Eficiência</div>
-                <div class="flex-1 font-semibold cursor-default">Rentabilidade</div>
+                <div class="flex-1 font-semibold cursor-default text-black">Eficiência</div>
+                <div class="flex-1 font-semibold cursor-default text-black">Rentabilidade</div>
               </div>
               <!-- Individual Row 6 -->
               <div class="flex">
