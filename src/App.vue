@@ -247,7 +247,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">Resultado {{ this.balancoData }}</div>
+                <div class="flex-1 font-bold text-black cursor-default">Resultado (12m) {{ this.balancoData }}</div>
                 <div class="flex-1 font-bold text-black cursor-default">Balanço {{ this.balancoData }}</div>
               </div>
               <!-- DRE / Balanço Row 1 -->
