@@ -15,21 +15,27 @@
               <!-- Individual Row 1 -->
               <div class="flex">
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
-                  <span class="cursor-help text-black">Preço</span>
+                  <span class="cursor-help text-black" v-tooltip="tooltip['Preco']">Preço</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
+                <div class="flex-1 px-4 py-0 text-left">
                   <span @click="showChart('Preço')" class="cursor-pointer text-black">{{ this.cotacoes.length > 0 ? 'R$' + this.cotacoes[0].precoFechamento : '' }}</span>
+                </div>
+                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-help text-black" v-tooltip="tooltip['UltimoBalanco']">Últ. Balanço</span>
+                </div>
+                <div class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChart('UltimoBalanco')" class="cursor-pointer text-black">{{ this.balancoData }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help text-black" v-tooltip="tooltip['ValorDeMercado']">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
+                <div class="flex-1 px-4 py-0 text-left">
                   <span @click="showChart('ValorDeMercado')" class="cursor-pointer text-black">{{ this.indicators['ValorDeMercado'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help text-black" v-tooltip="tooltip['EV']">{{ this.indicators['EV'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex justify-between items-center w-2/12 px-4 bg-slate-200">
+                <div class="flex-1 px-4 py-0 text-left">
                   <span @click="showChart('EV')" class="cursor-pointer text-black">{{ this.indicators['EV'].valueString }}</span>
                 </div>
               </div>
@@ -247,16 +253,36 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">Resultado (12m) {{ this.balancoData }}</div>
+                <div class="flex-1 font-semibold text-black cursor-default">
+                  <span class="font-bold"> Resultado </span>
+                  <div class="inline-flex items-center text-base bg-slate-200 rounded-full ml-3 p-0 cursor-pointer">
+                    <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '12M'}"
+                        class="rounded-full py-0 px-2"
+                        @click="this.tipoPeriodo = '12M'">
+                      12M
+                    </div>
+                    <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '3M'}"
+                        class="rounded-full py-0 px-2"
+                        @click="this.tipoPeriodo = '3M'">
+                      3M
+                    </div>
+                  </div>
+                </div>
                 <div class="flex-1 font-bold text-black cursor-default">Balanço {{ this.balancoData }}</div>
               </div>
               <!-- DRE / Balanço Row 1 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['ReceitaLiquida'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('ReceitaLiquida')" class="cursor-pointer text-black">{{ this.itens['ReceitaLiquida'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['ReceitaLiquida'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('ReceitaLiquida')" class="cursor-pointer text-black">{{ this.itensTrimestral['ReceitaLiquida'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['PatrimonioLiquido'].indicadorNomeBonito }}</span>
@@ -267,11 +293,17 @@
               </div>
               <!-- DRE / Balanço Row 2 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['Custos'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('Custos')" class="cursor-pointer text-black">{{ this.itens['Custos'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['Custos'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('Custos')" class="cursor-pointer text-black">{{ this.itensTrimestral['Custos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['AtivoTotal'].indicadorNomeBonito }}</span>
@@ -282,11 +314,17 @@
               </div>
               <!-- DRE / Balanço Row 3 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['ResultadoBruto'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('ResultadoBruto')" class="cursor-pointer text-black">{{ this.itens['ResultadoBruto'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['ResultadoBruto'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('ResultadoBruto')" class="cursor-pointer text-black">{{ this.itensTrimestral['ResultadoBruto'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['PassivoTotal'].indicadorNomeBonito }}</span>
@@ -297,11 +335,17 @@
               </div>
               <!-- DRE / Balanço Row 4 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer text-black">{{ this.itens['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['DespesasReceitasOperacionaisOuAdministrativas'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('DespesasReceitasOperacionaisOuAdministrativas')" class="cursor-pointer text-black">{{ this.itensTrimestral['DespesasReceitasOperacionaisOuAdministrativas'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['DividaBruta'].indicadorNomeBonito }}</span>
@@ -312,11 +356,17 @@
               </div>
               <!-- DRE / Balanço Row 5 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['EBIT'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('EBIT')" class="cursor-pointer text-black">{{ this.itens['EBIT'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['EBIT'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('EBIT')" class="cursor-pointer text-black">{{ this.itensTrimestral['EBIT'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['DividaLiquida'].indicadorNomeBonito }}</span>
@@ -327,11 +377,17 @@
               </div>
               <!-- DRE / Balanço Row 6 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['EBITDA'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('EBITDA')" class="cursor-pointer text-black">{{ this.itens['EBITDA'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['EBITDA'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('EBITDA')" class="cursor-pointer text-black">{{ this.itensTrimestral['EBITDA'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['Disponibilidades'].indicadorNomeBonito }}</span>
@@ -342,11 +398,17 @@
               </div>
               <!-- DRE / Balanço Row 7 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['ResultadoFinanceiro'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('ResultadoFinanceiro')" class="cursor-pointer text-black">{{ this.itens['ResultadoFinanceiro'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['ResultadoFinanceiro'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('ResultadoFinanceiro')" class="cursor-pointer text-black">{{ this.itensTrimestral['ResultadoFinanceiro'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['AtivoCirculante'].indicadorNomeBonito }}</span>
@@ -357,11 +419,17 @@
               </div>
               <!-- DRE / Balanço Row 8 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['LAIR'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('LAIR')" class="cursor-pointer text-black">{{ this.itens['LAIR'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['LAIR'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('LAIR')" class="cursor-pointer text-black">{{ this.itensTrimestral['LAIR'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['AtivoNaoCirculante'].indicadorNomeBonito }}</span>
@@ -372,11 +440,17 @@
               </div>
               <!-- DRE / Balanço Row 9 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['Impostos'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('Impostos')" class="cursor-pointer text-black">{{ this.itens['Impostos'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['Impostos'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('Impostos')" class="cursor-pointer text-black">{{ this.itensTrimestral['Impostos'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['PassivoCirculante'].indicadorNomeBonito }}</span>
@@ -387,11 +461,17 @@
               </div>
               <!-- DRE / Balanço Row 9 -->
               <div class="flex">
-                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['LucroLiquidoSociosControladora'].indicadorNomeBonito }}</span>
                 </div>
-                <div class="flex-1 px-4 py-0 text-left">
+                <div v-if="tipoPeriodo === '12M'" class="flex-1 px-4 py-0 text-left">
                   <span @click="showChartItem('LucroLiquidoSociosControladora')" class="cursor-pointer text-black">{{ this.itens['LucroLiquidoSociosControladora'].valueString }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span class="cursor-default text-black">{{ this.itensTrimestral['LucroLiquidoSociosControladora'].indicadorNomeBonito }}</span>
+                </div>
+                <div v-if="tipoPeriodo === '3M'" class="flex-1 px-4 py-0 text-left">
+                  <span @click="showChartItemTrimestral('LucroLiquidoSociosControladora')" class="cursor-pointer text-black">{{ this.itensTrimestral['LucroLiquidoSociosControladora'].valueString }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-default text-black">{{ this.itens['PassivoNaoCirculante'].indicadorNomeBonito }}</span>
@@ -457,6 +537,7 @@ export default {
       ticker: '',
       lockedTicker: '',
       balancoData: '',
+      tipoPeriodo: '12M',
       isLoading: false,
       indicators: {
         'ValorDeMercado': { indicadorNomeBonito: 'Market Cap', value: '' },
@@ -514,6 +595,32 @@ export default {
         'AtivoCirculante': { indicadorNomeBonito: 'Ativo Circ.', value: '' },
         'AtivoNaoCirculante': { indicadorNomeBonito: 'Ativo N. Circ.', value: '' },
         'EquivalenciaPatrimonial': { indicadorNomeBonito: 'Eq. Patrimonial', value: '' },
+      },
+      itensTrimestral: {
+        'ReceitaLiquida': { indicadorNomeBonito: 'Receita', value: '' },
+        'Custos': { indicadorNomeBonito: 'Custos', value: '' },
+        'ResultadoBruto': { indicadorNomeBonito: 'Res. Bruto', value: '' },
+        'DespesasReceitasOperacionaisOuAdministrativas': { indicadorNomeBonito: 'Despesas', value: '' },
+        'EBIT': { indicadorNomeBonito: 'EBIT', value: '' },
+        'EBITDA': { indicadorNomeBonito: 'EBITDA', value: '' },
+        'ResultadoFinanceiro': { indicadorNomeBonito: 'Res. Financ.', value: '' },
+        'LAIR': { indicadorNomeBonito: 'LAIR', value: '' },
+        'Impostos': { indicadorNomeBonito: 'Impostos', value: '' },
+        'LucroLiquidoSociosControladora': { indicadorNomeBonito: 'Lucro Líq.', value: '' },
+        'PatrimonioLiquido': { indicadorNomeBonito: 'PL', value: '' },
+        'AtivoTotal': { indicadorNomeBonito: 'Ativo', value: '' },
+        'PassivoTotal': { indicadorNomeBonito: 'Passivo', value: '' },
+        'DividaBruta': { indicadorNomeBonito: 'Dív. Bruta', value: '' },
+        'DividaLiquida': { indicadorNomeBonito: 'Dív. Líquida', value: '' },
+        'CaixaEquivalentes': { indicadorNomeBonito: 'Caixa e Equiv.', value: '' },
+        'Disponibilidades': { indicadorNomeBonito: 'Dispon.', value: '' },
+        'PassivoCirculante': { indicadorNomeBonito: 'Passivo Circ.', value: '' },
+        'PassivoNaoCirculante': { indicadorNomeBonito: 'Passivo N. Circ.', value: '' },
+        'ReceitasFinanceiras': { indicadorNomeBonito: 'Receitas Fin.', value: '' },
+        'DespesasFinanceiras': { indicadorNomeBonito: 'Despesas Fin.', value: '' },
+        'AtivoCirculante': { indicadorNomeBonito: 'Ativo Circ.', value: '' },
+        'AtivoNaoCirculante': { indicadorNomeBonito: 'Ativo N. Circ.', value: '' },
+        'EquivalenciaPatrimonial': { indicadorNomeBonito: 'Eq. Patrimonial', value: '' },
       }
     }
   },
@@ -527,6 +634,7 @@ export default {
       this.cleanUI()
       await this.buscarIndicadores() // only wait for this one so seems fast
       this.buscarItensContabeis() // loads later
+      this.buscarItensContabeisTrimestral() // loads later
       this.buscarCotacoes() // loads later
       this.isLoading = false
       this.lockedTicker = this.ticker // so changing input field doesn't mess up headers
@@ -575,50 +683,7 @@ export default {
       }
     },
 
-    async buscarCotacoes() {
-      try {
-        const data = await Fintz.getFintzCotacoes(this.ticker);
-        this.processarCotacoes.call(this, data); // Ensure 'this' context is correct
-      } catch (error) {
-        console.error("Failed to fetch or set stock price history:", error);
-      }
-    },
-
-    processarCotacoes(data) {
-      this.cotacoes = data;
-    },
-
-    async buscarItensContabeis() {
-      try {
-        const data = await Fintz.getFintzItensContabeis(this.ticker);
-        await this.processarItensContabeis.call(this, data); // Ensure 'this' context is correct
-      } catch (error) {
-        console.error("Failed to fetch or process stock items:", error);
-      }
-    },
-
-    async processarItensContabeis(data) {
-      try {
-        // Assuming 'this.balancoData' and 'this.itens' are available in this scope
-        this.balancoData = data[0]['ano'] + ' T' + data[0]['trimestre'];
-
-        Object.keys(this.itens).forEach(itemKey => {
-          const apiValue = data.find(item => item.item === itemKey)?.valor || '-';
-          this.itens[itemKey].value = apiValue;
-        });
-
-        // After updating values, format them
-        this.formatarStringItens();
-      } catch (error) {
-        console.error("Error processing stock items:", error);
-        // Handle error for each indicator
-        Object.keys(this.itens).forEach(itemKey => {
-          this.itens[itemKey].valueString = 'Error';
-        });
-        this.formatarStringItens(); // Format even if there's an error to ensure consistent UI
-      }
-    },
-    
+       
     formatarStringIndicadores() {
       Object.keys(this.indicators).forEach(indicatorKey => {
         let formattedValue = this.indicators[indicatorKey].value
@@ -653,7 +718,52 @@ export default {
         this.indicators[indicatorKey].valueString = formattedValue
       })
     },
-    
+
+
+    async buscarCotacoes() {
+      try {
+        const data = await Fintz.getFintzCotacoes(this.ticker);
+        this.processarCotacoes.call(this, data); // Ensure 'this' context is correct
+      } catch (error) {
+        console.error("Failed to fetch or set stock price history:", error);
+      }
+    },
+
+    processarCotacoes(data) {
+      this.cotacoes = data;
+    },
+
+    async buscarItensContabeis() {
+      try {
+        const data = await Fintz.getFintzItensContabeis(this.ticker, '12M');
+        await this.processarItensContabeis.call(this, data); // Ensure 'this' context is correct
+      } catch (error) {
+        console.error("Failed to fetch or process stock items:", error);
+      }
+    },
+
+    async processarItensContabeis(data) {
+      try {
+        // Assuming 'this.balancoData' and 'this.itens' are available in this scope
+        this.balancoData = data[0]['ano'] + ' T' + data[0]['trimestre'];
+
+        Object.keys(this.itens).forEach(itemKey => {
+          const apiValue = data.find(item => item.item === itemKey)?.valor || '-';
+          this.itens[itemKey].value = apiValue;
+        });
+
+        // After updating values, format them
+        this.formatarStringItens();
+      } catch (error) {
+        console.error("Error processing stock items:", error);
+        // Handle error for each indicator
+        Object.keys(this.itens).forEach(itemKey => {
+          this.itens[itemKey].valueString = 'Error';
+        });
+        this.formatarStringItens(); // Format even if there's an error to ensure consistent UI
+      }
+    },
+
     formatarStringItens() {
       Object.keys(this.itens).forEach(itemKey => {
         let formattedValue = this.itens[itemKey].value
@@ -673,6 +783,53 @@ export default {
       })
     },
 
+    async buscarItensContabeisTrimestral() {
+      try {
+        const data = await Fintz.getFintzItensContabeis(this.ticker, 'TRIMESTRAL');
+        await this.processarItensContabeisTrimestral.call(this, data); // Ensure 'this' context is correct
+      } catch (error) {
+        console.error("Failed to fetch or process stock items (trimestral):", error);
+      }
+    },
+
+    async processarItensContabeisTrimestral(data) {
+      try {
+        Object.keys(this.itensTrimestral).forEach(itemKey => {
+          const apiValue = data.find(item => item.item === itemKey)?.valor || '-';
+          this.itensTrimestral[itemKey].value = apiValue;
+        });
+
+        // After updating values, format them
+        this.formatarStringItensTrimestral();
+      } catch (error) {
+        console.error("Error processing stock items:", error);
+        // Handle error for each indicator
+        Object.keys(this.itensTrimestral).forEach(itemKey => {
+          this.itensTrimestral[itemKey].valueString = 'Error';
+        });
+        this.formatarStringItensTrimestral(); // Format even if there's an error to ensure consistent UI
+      }
+    },
+
+    formatarStringItensTrimestral() {
+      Object.keys(this.itensTrimestral).forEach(itemKey => {
+        let formattedValue = this.itensTrimestral[itemKey].value
+        const value = formattedValue
+        if (!isNaN(formattedValue) && formattedValue !== '-' && formattedValue !== 'Error') {
+          // const formatter = Intl.NumberFormat('pt-br', { notation: 'compact', style: 'currency', currency: 'BRL', minimumFractionDigits: 2 })
+          // formattedValue = formatter.format(formattedValue)
+          const formatter = new Intl.NumberFormat('en', {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+            notation: 'compact'
+          })
+
+          formattedValue = formatter.format(value)
+        }
+        this.itensTrimestral[itemKey].valueString = formattedValue
+      })
+    },
+ 
     showChart(indicatorKey) {
       if (this.ticker !== '') { 
         this.chartData = {} // resetting
@@ -706,8 +863,25 @@ export default {
       }
     },
 
-    loadChartDataItem(indicatorKey) {
-      this.fetchStockItemHistory(indicatorKey).then(historicalData => {
+    showChartItemTrimestral(indicatorKey) {
+      if (this.ticker !== '') { 
+        this.chartData = {} // resetting
+        this.chartOptions = {} // resetting
+        this.currentIndicatorKey = indicatorKey
+        this.isChartVisible = true
+        this.chartTitle = this.ticker.toUpperCase() + ' ' + this.itensTrimestral[indicatorKey].indicadorNomeBonito
+        
+        const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
+        if (!(not_12m.includes(indicatorKey))) {
+          this.chartTitle += ' Trimestral'
+        }
+
+        this.loadChartDataItem(indicatorKey, 'TRIMESTRAL')
+      }
+    },
+
+    loadChartDataItem(indicatorKey, tipoPeriodo = '12M') {
+      this.fetchStockItemHistory(indicatorKey, tipoPeriodo).then(historicalData => {
         if (!historicalData) {
           console.error("No historical data available")
           return
@@ -728,7 +902,7 @@ export default {
         const chartData = {
           labels: labels, // Extracting dates
           datasets: [{
-            label: this.itens[indicatorKey].indicadorNomeBonito, // You might want to customize this label
+            label: tipoPeriodo == '12M' ? this.itens[indicatorKey].indicadorNomeBonito : this.itensTrimestral[indicatorKey].indicadorNomeBonito, // You might want to customize this label
             data: data,
             backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color of the dataset (area under the line)
             fill: true,
@@ -947,12 +1121,11 @@ export default {
       this.chartOptions = options
     },
 
-    async fetchStockItemHistory(indicatorKey) {
+    async fetchStockItemHistory(indicatorKey, tipoPeriodo = '12M') {
       const URL_BASE = 'https://api.fintz.com.br'
       const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
       const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
 
-      let tipoPeriodo = '12M'
       if (not_12m.includes(indicatorKey)) {
         tipoPeriodo = 'TRIMESTRAL'
       }

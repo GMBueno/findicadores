@@ -19,8 +19,15 @@ class Fintz {
     }
   }
 
-  static async getFintzItensContabeis(ticker) {
-    const PARAMS = new URLSearchParams({ ticker: ticker.toUpperCase() });
+  static async getFintzItensContabeis(ticker, tipoPeriodo = '') {
+    let PARAMS = ''
+    if (tipoPeriodo === '' || tipoPeriodo === '12M') {
+      PARAMS = new URLSearchParams({ ticker: ticker.toUpperCase() })
+    } else {
+      // tem que ser assim pq se mandar 12M não vai pegar o balanço
+      // não tem opção "pegar prefencialmente 12M", quer dizer, tem, é não mandar o parametro...
+      PARAMS = new URLSearchParams({ ticker: ticker.toUpperCase(), tipoPeriodo: tipoPeriodo })
+    }
 
     const endpoint = `${BASE_URL}/bolsa/b3/avista/itens-contabeis/por-ticker?${PARAMS.toString()}`;
 
