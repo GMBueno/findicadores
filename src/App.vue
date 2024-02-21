@@ -255,14 +255,15 @@
               <div class="flex p-1 text-xl bg-blue-400">
                 <div class="flex-1 font-semibold text-black cursor-default">
                   <span class="font-bold"> Resultado </span>
-                  <div class="inline-flex items-center text-base bg-slate-200 rounded-full ml-3 p-0 cursor-pointer">
+                  <!-- Toggle Trimestral e Acumulado 12M -->
+                  <div class="inline-flex items-center text-base border-slate-200 border-2 bg-slate-200 rounded-full ml-3 p-0 cursor-pointer">
                     <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '12M'}"
-                        class="rounded-full py-0 px-2"
+                        class="rounded-full py-0 px-3"
                         @click="this.tipoPeriodo = '12M'">
                       12M
                     </div>
                     <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '3M'}"
-                        class="rounded-full py-0 px-2"
+                        class="rounded-full py-0 px-3"
                         @click="this.tipoPeriodo = '3M'">
                       3M
                     </div>
