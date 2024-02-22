@@ -1,7 +1,7 @@
 # Findicadores
 
 Disponível em:
-[https://gmbueno.github.io/findicadores/](https://gmbueno.github.io/findicadores/)
+[findicadores.com.br](findicadores.com.br)
 
 ## Sobre o site
 
