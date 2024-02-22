@@ -257,12 +257,12 @@
                   <span class="font-bold"> Resultado </span>
                   <!-- Toggle Trimestral e Acumulado 12M -->
                   <div class="inline-flex items-center text-base border-slate-200 border-2 bg-slate-200 rounded-full ml-3 p-0 cursor-pointer">
-                    <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '12M'}"
+                    <div :class="{'bg-blue-500 text-white font-bold': this.tipoPeriodo === '12M'}"
                         class="rounded-full py-0 px-3"
                         @click="this.tipoPeriodo = '12M'">
                       12M
                     </div>
-                    <div :class="{'bg-blue-600 text-white font-bold': this.tipoPeriodo === '3M'}"
+                    <div :class="{'bg-blue-500 text-white font-bold': this.tipoPeriodo === '3M'}"
                         class="rounded-full py-0 px-3"
                         @click="this.tipoPeriodo = '3M'">
                       3M
