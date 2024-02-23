@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "cp CNAME dist/ && gh-pages -d dist"
   },
   "dependencies": {
     "chartjs-adapter-date-fns": "^3.0.0",
