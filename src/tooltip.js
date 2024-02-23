@@ -28,7 +28,7 @@ const tooltip = {
   ROIC: '(EBIT - Impostos)/(PL + Dívida Líquida). Retorno sobre o Capital Investido. Avalia a eficiência da empresa em alocar o capital disponível.',
   ROA: 'Lucro Líquido/Ativo. Retorno sobre Ativos. Mede a eficiência da empresa em usar seus ativos para gerar lucro.',
   GiroAtivos: 'Receita Líquida/Ativos. Giro de Ativos. Indica a eficiência com que a empresa utiliza seus ativos para gerar vendas.',
-  UltimoBalanco: 'Informa de qual trimestre é o balanço mais recente. Usados p/ o Resultado e calcular os indicadores. Publicado na CVM, o delay até aqui é <12h.',
+  UltimoBalanco: 'Informa de qual trimestre é o balanço mais recente. Usados p/ o Resultado e calcular os indicadores. Publicado na CVM, o delay até aqui é <12h. IFRS.',
   Preco: 'Cotação de fechamento do último dia útil.'
 };
 
