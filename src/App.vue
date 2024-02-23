@@ -24,7 +24,7 @@
                   <span class="cursor-help text-black" v-tooltip="tooltip['UltimoBalanco']">Últ. Balanço</span>
                 </div>
                 <div class="flex-1 px-4 py-0 text-left">
-                  <span @click="showChart('UltimoBalanco')" class="cursor-pointer text-black">{{ this.balancoData }}</span>
+                  <span class="cursor-pointer text-black">{{ this.balancoData }}</span>
                 </div>
                 <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
                   <span class="cursor-help text-black" v-tooltip="tooltip['ValorDeMercado']">{{ this.indicators['ValorDeMercado'].indicadorNomeBonito }}</span>
