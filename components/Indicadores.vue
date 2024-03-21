@@ -1192,7 +1192,7 @@
       :style="{ width: '50rem' }"
       :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
     >
-      <LineChart :chartData="chartData" :chartOptions="chartOptions" />
+      <LineChart type="line" :chart-data="chartData" :chart-options="chartOptions" />
     </Dialog>
   </div>
 </template>
@@ -1207,6 +1207,7 @@ export default {
   props: {
     ticker: String,
   },
+  
 
   watch: {
     // Whenever the ticker prop changes, this function will run

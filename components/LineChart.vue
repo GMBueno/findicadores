@@ -1,26 +1,19 @@
 <template>
   <div>
-    <Chart type="line" :data="chartData" :options="chartOptions" />
+    <ClientOnly>
+      <Chart type="line" :data="chartData" :options="chartOptions" />
+    </ClientOnly>
   </div>
 </template>
 
-<script>
-import Chart from 'primevue/chart';
+<script setup lang="ts">
+import "chartjs-adapter-date-fns";
+import Chart from "primevue/chart";
 
-export default {
-  components: {
-    Chart,
-  },
+interface Props {
+  chartData: Object;
+  chartOptions: Object;
+}
 
-  props: {
-    chartData: {
-      type: Object,
-      required: true
-    },
-    chartOptions: {
-      type: Object,
-      required: true
-    }
-  }
-};
+defineProps<Props>();
 </script>
