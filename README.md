@@ -1,75 +1,36 @@
-# Nuxt 3 Minimal Starter
+# Findicadores
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Disponível em:
+[findicadores.com.br](https://findicadores.com.br)
 
-## Setup
+## Sobre o site
 
-Make sure to install the dependencies:
+Busque uma ação e acesse rapidamente:
 
-```bash
-# npm
-npm install
+- indicadores
+- resultado
+- cotação
+- gráficos de cada um desses
 
-# pnpm
-pnpm install
+### Exemplo com PETR4
 
-# yarn
-yarn install
+Dados gerais
+![PETR4.png](src/assets/PETR4.png)
 
-# bun
-bun install
-```
+Gráfico Histórico (só clicar no indicador)
+![PETR4.png](src/assets/PETR4_LPA.png)
 
-## Development Server
+## Rodar local
 
-Start the development server on `http://localhost:3000`:
+### Instalar
 
-```bash
-# npm
-npm run dev
+`npm install`
 
-# pnpm
-pnpm run dev
+### Rodar
 
-# yarn
-yarn dev
+`npm run dev`
 
-# bun
-bun run dev
-```
+### Deployar
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+`npm run build`
+`npm run deploy` // script customizado do pacote gh-pages
