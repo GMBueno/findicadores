@@ -1,0 +1,3 @@
+<template>
+  <Indicadores ticker="" />
+</template>
