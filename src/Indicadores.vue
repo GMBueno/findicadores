@@ -1142,7 +1142,7 @@ export default {
 
     async fetchStockItemHistory(indicatorKey, tipoPeriodo = '12M') {
       const URL_BASE = 'https://api.fintz.com.br'
-      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
+      const HEADERS = { 'X-API-Key': '75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN' }
       const not_12m = ['PatrimonioLiquido', 'AtivoTotal','PassivoTotal','DividaBruta','DividaLiquida','CaixaEquivalentes','Disponibilidades','PassivoCirculante','PassivoNaoCirculante','AtivoCirculante','AtivoNaoCirculante']
 
       if (not_12m.includes(indicatorKey)) {
@@ -1165,7 +1165,7 @@ export default {
 
     async fetchStockIndicatorHistory(indicatorKey) {
       const URL_BASE = 'https://api.fintz.com.br'
-      const HEADERS = { 'X-API-Key': 'chave-de-teste-api-fintz' }
+      const HEADERS = { 'X-API-Key': '75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN' }
       const PARAMS = new URLSearchParams({ indicador: indicatorKey, ticker: this.ticker.toUpperCase() })
 
       const endpoint = `${URL_BASE}/bolsa/b3/avista/indicadores/historico?${PARAMS.toString()}`
