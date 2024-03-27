@@ -99,7 +99,7 @@
 
               <!--Subheader Indicadores Valuation -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default text-black">
+                <div class="flex-1 font-semibold cursor-default text-black text-center">
                   Valuation
                 </div>
               </div>
@@ -296,7 +296,7 @@
 
               <!--Subheader Indicadores Endividamento -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default text-black">
+                <div class="flex-1 font-semibold cursor-default text-black text-center">
                   Endividamento
                 </div>
               </div>
@@ -419,10 +419,10 @@
 
               <!--Subheader Indicadores Eficiência -->
               <div class="flex p-0 bg-blue-200">
-                <div class="flex-1 font-semibold cursor-default text-black">
+                <div class="flex-1 font-semibold cursor-default text-black text-center">
                   Eficiência
                 </div>
-                <div class="flex-1 font-semibold cursor-default text-black">
+                <div class="flex-1 font-semibold cursor-default text-black text-center">
                   Rentabilidade
                 </div>
               </div>
