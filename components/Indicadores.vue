@@ -7,7 +7,7 @@
         <!-- Tabela Informações / Infos Gerais -->
         <div class="mx-auto max-w-screen-lg">
           <div
-            class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-7"
+            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-7"
           >
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
@@ -87,7 +87,7 @@
         <!-- Tabela de Indicadores -->
         <div class="mx-auto max-w-screen-lg">
           <div
-            class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border mb-7"
+            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-7"
           >
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
@@ -563,7 +563,7 @@
         <!-- Tabela de Itens Balanço -->
         <div class="mx-auto max-w-screen-lg">
           <div
-            class="overflow-hidden shadow-xl shadow-blue-100 drop-shadow sm:rounded-lg mx-6 border-gray-400 border"
+            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border"
           >
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
