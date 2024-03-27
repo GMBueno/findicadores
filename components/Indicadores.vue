@@ -12,7 +12,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">
+                <div class="flex-1 font-semibold text-black cursor-default text-center">
                   Informações {{ this.lockedTicker.toUpperCase() }}
                 </div>
               </div>
@@ -92,7 +92,7 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-bold text-black cursor-default">
+                <div class="flex-1 font-semibold text-black cursor-default text-center">
                   Indicadores
                 </div>
               </div>
@@ -568,15 +568,15 @@
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
               <div class="flex p-1 text-xl bg-blue-400">
-                <div class="flex-1 font-semibold text-black cursor-default">
-                  <span class="font-bold"> Resultado </span>
+                <div class="flex-1 font-semibold text-black cursor-default text-center">
+                  <span class="font-semibold"> Resultado </span>
                   <!-- Toggle Trimestral e Acumulado 12M -->
                   <div
                     class="inline-flex items-center text-base border-slate-200 border-2 bg-slate-200 rounded-full ml-3 p-0 cursor-pointer"
                   >
                     <div
                       :class="{
-                        'bg-blue-500 text-white font-bold':
+                        'bg-blue-500 text-white font-semibold':
                           this.tipoPeriodo === '12M',
                       }"
                       class="rounded-full py-0 px-3"
@@ -586,7 +586,7 @@
                     </div>
                     <div
                       :class="{
-                        'bg-blue-500 text-white font-bold':
+                        'bg-blue-500 text-white font-semibold':
                           this.tipoPeriodo === '3M',
                       }"
                       class="rounded-full py-0 px-3"
@@ -596,7 +596,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="flex-1 font-bold text-black cursor-default">
+                <div class="flex-1 font-semibold text-black cursor-default text-center">
                   Balanço {{ this.balancoData }}
                 </div>
               </div>
@@ -1178,7 +1178,7 @@
     >
       <div>
         <ProgressSpinner
-          style="width: 100px height: 100px"
+          style="width: 100px; height: 100px"
           strokeWidth="8"
           animationDuration=".5s"
         />
