@@ -1303,7 +1303,7 @@ export default {
           indicadorNomeBonito: "Lucro Líq.",
           value: "",
         },
-        PatrimonioLiquido: { indicadorNomeBonito: "PL", value: "" },
+        PatrimonioLiquido: { indicadorNomeBonito: "Patrim. Líq.", value: "" },
         AtivoTotal: { indicadorNomeBonito: "Ativo", value: "" },
         PassivoTotal: { indicadorNomeBonito: "Passivo", value: "" },
         DividaBruta: { indicadorNomeBonito: "Dív. Bruta", value: "" },
