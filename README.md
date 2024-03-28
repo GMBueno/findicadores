@@ -6,6 +6,7 @@ Disponível em:
 ## Sobre o site
 
 Busque uma ação e acesse rapidamente:
+
 - indicadores
 - resultado
 - cotação
@@ -22,11 +23,14 @@ Gráfico Histórico (só clicar no indicador)
 ## Rodar local
 
 ### Instalar
+
 `npm install`
 
 ### Rodar
+
 `npm run dev`
 
 ### Deployar
+
 `npm run build`
 `npm run deploy` // script customizado do pacote gh-pages

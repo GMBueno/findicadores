@@ -1,6 +1,8 @@
+/* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -30,7 +32,7 @@ body {
   margin: 0;
   /* display: flex; */
   place-items: center;
-  background-color: rgb(226,232,240);
+  background-color: rgb(226, 232, 240);
   min-width: 320px;
   min-height: 100vh;
 }
