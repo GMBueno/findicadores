@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   ssr: false,
   app: {
-    baseURL: '/findicadores/',
+    baseURL: '/',
   },
   devtools: {
     enabled: process.env.NODE_ENV !== "production",
