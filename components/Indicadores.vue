@@ -1414,7 +1414,7 @@ export default {
 
     async buscarIndicadores() {
       try {
-        const data = await Fintz.getFintzIndicadores(this.ticker);
+        const data = await Fintz.getIndicadoresPorTicker(this.ticker);
         await this.processarIndicadores.call(this, data); // Use `.call` to ensure `this` context is preserved
       } catch (error) {
         console.error("Failed to fetch or process stock indicators:", error);
@@ -1499,7 +1499,7 @@ export default {
 
     async buscarCotacoes() {
       try {
-        const data = await Fintz.getFintzCotacoes(this.ticker);
+        const data = await Fintz.getCotacoesHistorico(this.ticker);
         this.processarCotacoes.call(this, data); // Ensure 'this' context is correct
       } catch (error) {
         console.error("Failed to fetch or set stock price history:", error);
@@ -1512,7 +1512,7 @@ export default {
 
     async buscarItensContabeis() {
       try {
-        const data = await Fintz.getFintzItensContabeis(this.ticker, "12M");
+        const data = await Fintz.getItensContabeisPorTicker(this.ticker, "12M");
         await this.processarItensContabeis.call(this, data); // Ensure 'this' context is correct
       } catch (error) {
         console.error("Failed to fetch or process stock items:", error);
@@ -1567,7 +1567,7 @@ export default {
 
     async buscarItensContabeisTrimestral() {
       try {
-        const data = await Fintz.getFintzItensContabeis(
+        const data = await Fintz.getItensContabeisPorTicker(
           this.ticker,
           "TRIMESTRAL"
         );
@@ -1993,8 +1993,6 @@ export default {
     },
 
     async fetchStockItemHistory(indicatorKey, tipoPeriodo = "12M") {
-      const URL_BASE = "https://api.fintz.com.br";
-      const HEADERS = { "X-API-Key": "75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN" };
       const not_12m = [
         "PatrimonioLiquido",
         "AtivoTotal",
@@ -2013,41 +2011,20 @@ export default {
         tipoPeriodo = "TRIMESTRAL";
       }
 
-      const PARAMS = new URLSearchParams({
-        item: indicatorKey,
-        ticker: this.ticker.toUpperCase(),
-        tipoPeriodo: tipoPeriodo,
-      });
-
-      const endpoint = `${URL_BASE}/bolsa/b3/avista/itens-contabeis/historico?${PARAMS.toString()}`;
-
       try {
-        const response = await fetch(endpoint, { headers: HEADERS });
-        const data = await response.json();
-
-        return data;
+        const data = await Fintz.getItensContabeisHistorico(indicatorKey, this.ticker.toUpperCase(), tipoPeriodo)
+        return data
       } catch (error) {
-        console.error("Failed to fetch stock ITEM history:", error);
+        console.error("Falhou buscar histórico de item contábil")
       }
     },
 
     async fetchStockIndicatorHistory(indicatorKey) {
-      const URL_BASE = "https://api.fintz.com.br";
-      const HEADERS = { "X-API-Key": "75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN" };
-      const PARAMS = new URLSearchParams({
-        indicador: indicatorKey,
-        ticker: this.ticker.toUpperCase(),
-      });
-
-      const endpoint = `${URL_BASE}/bolsa/b3/avista/indicadores/historico?${PARAMS.toString()}`;
-
       try {
-        const response = await fetch(endpoint, { headers: HEADERS });
-        const data = await response.json();
-
-        return data;
+        const data = await Fintz.getIndicadoresHistorico(this.ticker.toUpperCase(), indicatorKey)
+        return data
       } catch (error) {
-        console.error("Failed to fetch stock INDICATOR history:", error);
+        console.error("Falhou buscar histórico de indicador")
       }
     },
   },
