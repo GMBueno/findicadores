@@ -1994,7 +1994,7 @@ export default {
 
     async fetchStockItemHistory(indicatorKey, tipoPeriodo = "12M") {
       const URL_BASE = "https://api.fintz.com.br";
-      const HEADERS = { "X-API-Key": "chave-de-teste-api-fintz" };
+      const HEADERS = { "X-API-Key": "75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN" };
       const not_12m = [
         "PatrimonioLiquido",
         "AtivoTotal",
@@ -2033,7 +2033,7 @@ export default {
 
     async fetchStockIndicatorHistory(indicatorKey) {
       const URL_BASE = "https://api.fintz.com.br";
-      const HEADERS = { "X-API-Key": "chave-de-teste-api-fintz" };
+      const HEADERS = { "X-API-Key": "75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN" };
       const PARAMS = new URLSearchParams({
         indicador: indicatorKey,
         ticker: this.ticker.toUpperCase(),

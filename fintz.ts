@@ -3,7 +3,7 @@
 import type Indicadores from "./components/Indicadores.vue";
 
 const BASE_URL = "https://api.fintz.com.br";
-const HEADERS = { "X-API-Key": "chave-de-teste-api-fintz" };
+const HEADERS = { "X-API-Key": "75IdGVrQce2PfPOenodnL9FDiJ1yjAh71mFxTrWN" };
 
 export interface Indicador {
   ticker: string;
