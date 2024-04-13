@@ -1,7 +1,6 @@
 # Findicadores
 
-Disponível em:
-[findicadores.com.br](https://findicadores.com.br)
+Disponível em: [findicadores.com.br](https://findicadores.com.br)
 
 ## Sobre o site
 
