@@ -1,35 +1,54 @@
 # Findicadores
 
-Disponível em: [findicadores.com.br](https://findicadores.com.br)
+Website using data from [Fintz][1]
 
-## Sobre o site
+## About
 
-Busque uma ação e acesse rapidamente:
+Currently, you can access the following information using the website:
 
-- indicadores
-- resultado
-- cotação
-- gráficos de cada um desses
+- Indexes
+- Results
+- Ticker prices
+- Graphs for all of the above
 
-### Exemplo com PETR4
+### Examples
 
-Dados gerais
+General data:
+
 ![PETR4.png](src/assets/PETR4.png)
 
-Gráfico Histórico (só clicar no indicador)
+Historical graph (click on index)
+
 ![PETR4.png](src/assets/PETR4_LPA.png)
 
-## Rodar local
+## Development
 
-### Instalar
+Install dependencies using:
 
-`npm install`
+```bash
+npm install
+```
 
-### Rodar
+In order to run the application locally, you will need to copy the example
+`.env` file and replace the values with your own:
 
-`npm run dev`
+```bash
+cp -v .env.example .env
+```
 
-### Deployar
+Finally, you can run the development server using:
 
-`npm run build`
-`npm run deploy` // script customizado do pacote gh-pages
+```bash
+npm run dev
+```
+
+## Deploy
+
+We deploy to [Vercel][2]. So you just need to run:
+
+```bash
+npx vercel
+```
+
+[1]: https://fintz.com.br
+[2]: https://vercel.com
