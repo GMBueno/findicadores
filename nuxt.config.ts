@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     enabled: process.env.NODE_ENV !== "production",
   },
   auth: {
-    globalAppMiddleware: true,
+    // If enabled, all pages will be private by default
+    globalAppMiddleware: false,
     provider: {
       type: "authjs",
     },
