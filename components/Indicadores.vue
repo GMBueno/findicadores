@@ -129,7 +129,7 @@
                 <div class="flex-1 px-4 py-0 text-left">
                   <span
                     class="cursor-default text-black"
-                    >{{ this.indicators["EBIT_EV"].value ? (100 * 1 / this.indicators["EV_EBIT"].value).toFixed(2).toString() + '%' : ''}}</span
+                    >{{ this.indicators["EBIT_EV"].valueString }}</span
                   >
                 </div>
               </div>
@@ -1511,7 +1511,7 @@ export default {
             MargemEBITDA: true,
             MargemEBIT: true,
             MargemLiquida: true,
-            EV_EBIT: true,
+            EBIT_EV: true,
             ROE: true,
             ROIC: true,
             ROA: true,
