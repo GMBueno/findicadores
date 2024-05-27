@@ -2,12 +2,12 @@
   <div class="bg-slate-200">
     <div class="flex flex-col min-h-screen">
       <div class="grow">
-        <NavBar @update:ticker="updateTicker" @fetchData="fetchData" />
+        <NavBar class="mb-6" @update:ticker="updateTicker" @fetchData="fetchData" />
 
         <!-- Tabela Informações / Infos Gerais -->
         <div class="mx-auto max-w-screen-lg">
           <div
-            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-7"
+            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-6"
           >
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
@@ -80,6 +80,59 @@
                   >
                 </div>
               </div>
+              <!-- Individual Row 2 -->
+              <div class="flex">
+                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span
+                    class="cursor-help text-black"
+                    v-tooltip="tooltip['Graham']"
+                    >Graham</span
+                  >
+                </div>
+                <div class="flex-1 px-4 py-0 text-left">
+                  <span class="cursor-default text-black">{{
+                    this.indicators["LPA"].value ? "R$" + Math.sqrt(22.5 * Number(this.indicators["LPA"].value) * Number(this.indicators["VPA"].value)).toFixed(2).toString() : ""
+                  }}</span>
+                </div>
+                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span
+                    class="cursor-help text-black"
+                    v-tooltip="tooltip['QuantidadeAcoesTotais']"
+                    >Nº Ações</span
+                  >
+                </div>
+                <div class="flex-1 px-4 py-0 text-left">
+                  <span class="cursor-default text-black">{{
+                    this.indicators["QuantidadeAcoesTotais"].valueString
+                  }}</span>
+                </div>
+                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span
+                    class="cursor-help text-black"
+                    v-tooltip="tooltip['Payout']"
+                    >Payout</span
+                  >
+                </div>
+                <div class="flex-1 px-4 py-0 text-left">
+                  <span
+                    class="cursor-default text-black">
+                      {{ this.indicators["DividendYield"].value ? (100 * ((this.indicators["DividendYield"].value * this.indicators["ValorDeMercado"].value) / this.indicators["QuantidadeAcoesTotais"].value) / this.indicators["LPA"].value).toFixed(1).toString() + '%' : '' }}</span
+                  >
+                </div>
+                <div class="flex-1 px-4 py-0 bg-sky-100 text-right">
+                  <span
+                    class="cursor-help text-black"
+                    v-tooltip="tooltip['EY']"
+                    >EY</span
+                  >
+                </div>
+                <div class="flex-1 px-4 py-0 text-left">
+                  <span
+                    class="cursor-default text-black"
+                    >{{ this.indicators["EBIT_EV"].value ? (100 * 1 / this.indicators["EV_EBIT"].value).toFixed(2).toString() + '%' : ''}}</span
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -87,7 +140,7 @@
         <!-- Tabela de Indicadores -->
         <div class="mx-auto max-w-screen-lg">
           <div
-            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-7"
+            class="overflow-hidden sm:rounded-lg mx-6 border-gray-400 border mb-6"
           >
             <div class="align-middle inline-block min-w-full">
               <!-- Header -->
@@ -1160,8 +1213,8 @@
         </div>
       </div>
 
-      <footer class="mt-8 p-2 bg-blue-400 text-white text-center">
-        Dados da
+      <footer class="mt-4 py-1 bg-blue-400 text-white text-center">
+        <span class="cursor-default"> Dados da </span>
         <a
           href="https://fintz.com.br"
           target="_blank"
@@ -1244,6 +1297,7 @@ export default {
       tipoPeriodo: "12M",
       isLoading: false,
       indicators: {
+        QuantidadeAcoesTotais: { indicadorNomeBonito: "Nº Ações", value: "" },
         ValorDeMercado: { indicadorNomeBonito: "Market Cap", value: "" },
         EV: { indicadorNomeBonito: "EV", value: "" },
         DividendYield: { indicadorNomeBonito: "DY", value: "" },
@@ -1251,6 +1305,7 @@ export default {
         P_VP: { indicadorNomeBonito: "P/VP", value: "" },
         EV_EBITDA: { indicadorNomeBonito: "EV/EBITDA", value: "" },
         EV_EBIT: { indicadorNomeBonito: "EV/EBIT", value: "" },
+        EBIT_EV: { indicadorNomeBonito: "EY", value: "" },
         P_EBITDA: { indicadorNomeBonito: "P/EBITDA", value: "" },
         P_EBIT: { indicadorNomeBonito: "P/EBIT", value: "" },
         VPA: { indicadorNomeBonito: "VPA", value: "" },
@@ -1456,6 +1511,7 @@ export default {
             MargemEBITDA: true,
             MargemEBIT: true,
             MargemLiquida: true,
+            EV_EBIT: true,
             ROE: true,
             ROIC: true,
             ROA: true,
@@ -1464,9 +1520,18 @@ export default {
             EV: true,
             ValorDeMercado: true,
           };
+          if (indicatorKey === "QuantidadeAcoesTotais") {
+            const formatter = Intl.NumberFormat("en-US", {
+              notation: "compact",
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
+            });
+            formattedValue = formatter.format(formattedValue);
+          }
           if (
             !(indicatorKey in percentIndicators) &&
-            !(indicatorKey in currencyIndicators)
+            !(indicatorKey in currencyIndicators) &&
+            indicatorKey !== "QuantidadeAcoesTotais"
           ) {
             const formatter = Intl.NumberFormat("pt-br", {
               maximumFractionDigits: 2,

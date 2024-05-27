@@ -1,10 +1,10 @@
 <template>
   <nav
-    class="flex items-center py-3 justify-between mb-7 px-10 bg-white text-slate-600"
+    class="flex items-center py-3 justify-between px-10 bg-white text-slate-600"
   >
     <div class="flex items-center">
       <img src="@/assets/icone-positivo.png" alt="Logo" class="h-8 mr-2" />
-      <h2 class="text-2xl font-semibold">findicadores.com.br</h2>
+      <h2 class="text-2xl font-semibold cursor-default">findicadores.com.br</h2>
     </div>
     <div class="flex items-center gap-3">
       <Button

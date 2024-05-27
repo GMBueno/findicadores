@@ -29,7 +29,11 @@ const tooltip = {
   ROA: 'Lucro Líquido/Ativo. Retorno sobre Ativos. Mede a eficiência da empresa em usar seus ativos para gerar lucro.',
   GiroAtivos: 'Receita Líquida/Ativos. Giro de Ativos. Indica a eficiência com que a empresa utiliza seus ativos para gerar vendas.',
   UltimoBalanco: 'Informa de qual trimestre é o balanço mais recente. Usados p/ o Resultado e calcular os indicadores. Publicado na CVM, o delay até aqui é <12h. IFRS.',
-  Preco: 'Cotação de fechamento do último dia útil.'
+  Preco: 'Cotação de fechamento do último dia útil.',
+  Graham: 'Fórmula de Benjamin Graham (autor de "O Investidor Inteligente" e mentor de Buffet) para o valor justo de uma ação. Fórmula: Valor Justo Graham = √(22,5 x LPA x VPA)',
+  QuantidadeAcoesTotais: 'Total da base acionária. Útil para saber se os proventos são distruídos em muitas ações.',
+  Payout: 'Parcela dos lucros que é distribuída como proventos. Consideram-se os proventos dos últimos 12 meses sobre o valor de mercado atual.',
+  EY: 'Earnings Yield, que é EBIT / EV. Significa o quanto o lucro operacional representa do valor de firma.',
 };
 
 export default tooltip;
